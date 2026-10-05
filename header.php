@@ -63,7 +63,7 @@
                             </li>
 
 
-                            <li id="menu-item-144" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-144"><a>КАТАЛОГ</a>
+                            <li id="menu-item-144" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-144"><span>КАТАЛОГ</span>
                                 <ul class="sub-menu">
                                     <li id="menu-item-1291" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1291"><a href="/shop/">Все товары</a></li>
 
@@ -101,7 +101,7 @@
                             </div>
                         </li>
 
-                        <li class="menu-item-has-children">
+                        <!-- <li class="menu-item-has-children">
                             <a href="#">
 
                                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"
@@ -121,7 +121,7 @@
                                 )
                             );
                             ?>
-                        </li>
+                        </li> -->
 
                         <?php if (!is_page('cart') && !is_page('checkout')) : ?>
                             <li>
@@ -147,7 +147,14 @@
         <div class="expo-mini-cart animate__fadeInRight hidden">
             <div>
                 <div class="mini-card-close">
-                    <img src="<?php echo get_template_directory_uri() . '/img/banner-close.png' ?>" alt="">
+                    <svg xmlns="http://w3.org" aria-hidden="true" focusable="false"
+                        class="icon icon-close" fill="none" viewBox="0 0 24 24" width="24px" height="24px">
+                        <path d="M18 6L6 18M6 6L18 18"
+                            stroke="#fff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
                 </div>
                 <div>
                     <?php woocommerce_mini_cart(); ?>

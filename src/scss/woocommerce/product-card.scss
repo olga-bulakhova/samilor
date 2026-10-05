@@ -13,6 +13,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		position: relative;
+		text-align: center;
 	}
 
 	.product-thumb {
@@ -30,7 +31,7 @@
 			width: 100% !important;
 			max-height: 300px;
 			object-fit: cover;
-			//	height: auto !important;
+			border-radius: $border-radius;
 		}
 
 		@media (max-width: $sm) {

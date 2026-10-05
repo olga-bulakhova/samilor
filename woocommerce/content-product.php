@@ -53,14 +53,14 @@ if (empty($product) || !$product->is_visible()) {
                 do_action('woocommerce_shop_loop_item_title');
                 ?>
 
-                <div class="d-flex justify-content-between align-items-center" style="gap: 10px">
+                <div>
                     <h4>
                         <a href="<?php echo $product->get_permalink() ?>"><?php echo $product->get_title() ?></a>
                     </h4>
-                    <?php woocommerce_template_loop_rating(); ?>
+                    <!-- <?php woocommerce_template_loop_rating(); ?> -->
                 </div>
 
-                <h4 class="mt-05 mb-1 fw-400">
+                <h5 class="mt-05 mb-1 fw-400">
                     <?php
 
                     if (!empty($product->get_sku())) {
@@ -68,7 +68,7 @@ if (empty($product) || !$product->is_visible()) {
                     }
 
                     ?>
-                </h4>
+                </h5>
 
                 <?php
                 /**

@@ -50,6 +50,12 @@
 			}
 		}
 
+		&.header-menu-left {
+			li {
+				margin-top: 6px;
+			}
+		}
+
 		&.header-menu-right {
 			column-gap: 15px;
 			li {
@@ -67,9 +73,10 @@
 
 		> li {
 			display: block;
-			height: 52px;
+			height: 100%;
+
+			//	height: 52px;
 			padding: 15px 0;
-			vertical-align: middle;
 		}
 
 		.sub-menu {

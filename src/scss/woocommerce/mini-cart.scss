@@ -21,11 +21,14 @@
 		position: absolute;
 		top: 15px;
 		right: 15px;
+
 		cursor: pointer;
 	}
 
 	table.woocommerce-mini-cart {
 		width: 100%;
+		color: $color-light-text;
+		border-collapse: collapse;
 
 		td {
 			padding: 3px 5px;
@@ -73,6 +76,7 @@
 	.woocommerce-mini-cart__total {
 		margin-top: 15px;
 		text-align: right;
+		color: $color-light-text;
 
 		strong {
 			font-weight: 600;

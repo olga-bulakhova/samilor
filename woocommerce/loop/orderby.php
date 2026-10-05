@@ -28,7 +28,7 @@ $product_categories = get_terms($args);
 $category_name = get_queried_object()->name;
 ?>
 
-<div class="woocommerce-product-ordering d-flex align-items-center mobile-column">
+<!-- <div class="woocommerce-product-ordering d-flex align-items-center mobile-column">
     <div class="drop-down">
         <div class="selected">
             <span><?php echo $category_name === 'product' ? 'Все товары' : $category_name; ?></span>
@@ -56,4 +56,4 @@ $category_name = get_queried_object()->name;
         <input type="hidden" name="paged" value="1" />
         <?php wc_query_string_form_fields(null, array('orderby', 'submit', 'paged', 'product-page')); ?>
     </form>
-</div>
+</div> -->

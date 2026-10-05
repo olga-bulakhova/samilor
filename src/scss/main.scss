@@ -127,3 +127,17 @@ strong {
 .border-bottom-black {
 	border-bottom: $border-black;
 }
+
+.expo-subtitle {
+	font-size: 22px;
+	font-weight: 500;
+	color: $color-light-text;
+}
+
+.light-text {
+	color: $color-light-text;
+}
+
+.text-underline {
+	text-decoration: underline;
+}

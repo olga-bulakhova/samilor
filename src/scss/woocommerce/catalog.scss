@@ -3,7 +3,8 @@
 }
 
 .woocommerce-breadcrumb {
-	color: $color-light-text;
+	font-size: 12px;
+	color: rgb(180, 176, 176);
 	a {
 		color: $color-dark-text;
 		&:hover {
@@ -70,10 +71,6 @@
 	z-index: 150;
 	max-height: 200px;
 	overflow-y: auto;
-
-	// &::-webkit-scrollbar {
-	// 	width: 0;
-	// }
 }
 
 .drop-down .selected span.value,

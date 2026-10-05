@@ -1,88 +1,97 @@
 @mixin button {
-  display: inline-block;
-  font-family: inherit;
-  font-size: 0.9rem;
-  line-height: 1;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
-  cursor: pointer;
-  border: none;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	display: inline-block;
+	font-family: inherit;
+	font-size: 0.9rem;
+	line-height: 1;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	vertical-align: middle;
+	cursor: pointer;
+	border: none;
+	transition:
+		color 0.15s ease-in-out,
+		background-color 0.15s ease-in-out,
+		border-color 0.15s ease-in-out,
+		box-shadow 0.15s ease-in-out;
 }
 
 @mixin button-primary {
-  line-height: 1;
-  padding: 12px 20px;
-  min-width: 150px;
-  font-weight: 600;
-  font-style: normal;
-  font-size: 14px;
-  color: $color-primary-button;
-  background-color: $background-color-primary-button;
-  border-width: 1px;
-  border-color: transparent;
-  border-radius: 20px;
-  border-style: solid;
-  cursor: pointer;
-  opacity: 1;
-  &:hover {
-    opacity: 0.8;
-  }
-  &:disabled {
-    color: #000;
-    background-color: transparent;
-    opacity: 1;
-    cursor: default;
-  }
+	line-height: 1;
+	padding: 16px 20px;
+	min-width: 150px;
+	font-weight: 700;
+	font-style: normal;
+	font-size: 12px;
+	color: $color-primary-button;
+	background-color: $background-color-primary-button;
+	border-width: 1px;
+	border-color: transparent;
+	border-radius: 24px;
+	border-style: solid;
+	cursor: pointer;
+	opacity: 1;
+	&:hover {
+		opacity: 0.8;
+	}
+	&:disabled {
+		color: #000;
+		background-color: transparent;
+		opacity: 1;
+		cursor: default;
+	}
 
-  @media (max-width: $sm) {
-    padding: 12px 12px;
-  }
+	@media (max-width: $sm) {
+		padding: 12px 12px;
+	}
 }
 
 .btn {
-  @include button;
+	@include button;
 }
 
 @mixin button-secondary {
-  background-color: $background-color-secondary-button;
-  color: $color-secondary-button;
-  @include font-style(16px, 15px, 14px);
-  font-weight: 500;
-  letter-spacing: .05rem;
-  padding: 15px 35px 14px;
-  transition: all .2s;
-  border-radius: 5px;
+	background-color: $background-page;
+	color: $color-light-text;
+	@include font-style(16px, 15px, 14px);
+	font-weight: 700;
+	letter-spacing: 0.05rem;
+	padding: 20px 35px;
+	transition: all 0.2s;
+	border-radius: 30px;
+	border: 1px solid $color-light-text;
 
-  &.btn-border {
-    border: 1px solid $color-secondary-button;
+	// &.btn-border {
+	// 	border: 1px solid $color-secondary-button;
+	// }
 
-  }
+	&.btn-sm {
+		@include font-style(13px, 13px, 12px);
+		padding: 5px 10px;
+		letter-spacing: initial;
+		box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 
-  &.btn-sm {
-    @include font-style(13px, 13px, 12px);
-    padding: 5px 10px;
-    letter-spacing: initial;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+		&:hover {
+			transform: none;
+		}
+	}
 
-    &:hover {
-      transform: none;
-    }
-  }
-
-  &:hover {
-    outline-offset: 15px;
-    transform: scale(1.03);
-  }
-
+	&:hover {
+		outline-offset: 15px;
+		transform: scale(1.03);
+	}
 }
 
 .btn-expo-secondary {
-   @include button-secondary;
+	@include button-secondary;
 }
 
-.add_to_cart_button, .product_type_grouped,.product_type_external, .product_type_simple, .btn-expo-primary, .single_add_to_cart_button {
-  @include button;
-  @include button-primary;
+.add_to_cart_button,
+.product_type_grouped,
+.product_type_external,
+.product_type_simple,
+.btn-expo-primary,
+.single_add_to_cart_button {
+	@include button;
+	@include button-primary;
 }

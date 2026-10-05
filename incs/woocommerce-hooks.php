@@ -190,11 +190,38 @@ function expo_product_btn_text($text, $product)
 //Отключение уведомления Вы отложили Товар в свою корзину
 add_filter('wc_add_to_cart_message_html', '__return_null');
 
-//делаем дату самовывоза обязательным полем
-// add_filter( 'woocommerce_checkout_fields', 'expo_required_fields', 25 );
 
-// function expo_required_fields( $fields ) {
-//     $fields[ 'order' ][ 'order_date' ][ 'required' ] = true;
-//     return $fields;
 
-// }
+// 1. Регистрируем новую кастомную валюту в списке WooCommerce
+add_filter('woocommerce_currencies', 'add_custom_gh_currency');
+function add_custom_gh_currency($currencies)
+{
+    // 'XGH' — уникальный трехбуквенный код вашей валюты (можете изменить)
+    // 'Моя кастомная валюта (BYN)' — название, которое появится в админке
+    $currencies['XGH'] = __('Моя кастомная валюта (BYN)', 'woocommerce');
+    return $currencies;
+}
+
+// 2. Привязываем к зарегистрированной валюте символ Ҕ
+add_filter('woocommerce_currency_symbol', 'add_custom_gh_currency_symbol', 10, 2);
+function add_custom_gh_currency_symbol($currency_symbol, $currency)
+{
+    switch ($currency) {
+        case 'XGH':
+            $currency_symbol = 'BYN';
+            break;
+    }
+    return $currency_symbol;
+}
+
+add_filter('wc_add_to_cart_message_html', 'handler_remove_cart_updated_notice', 10, 2);
+add_filter('woocommerce_add_message', 'handler_remove_cart_updated_notice');
+
+function handler_remove_cart_updated_notice($message)
+{
+    // Проверяем, содержит ли сообщение системный текст об обновлении корзины
+    if (strpos($message, 'Корзина обновлена') !== false || strpos($message, 'Cart updated') !== false) {
+        return false; // Полностью отменяем вывод этого сообщения
+    }
+    return $message;
+}

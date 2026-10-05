@@ -4,6 +4,19 @@
 	line-height: 1.4;
 	position: relative;
 
+	.woocommerce-product-gallery__image,
+	.wp-post-image,
+	.woocommerce-product-gallery img {
+		border-radius: $border-radius;
+	}
+	.related.products .xt_woovs-single-product .swatch.swatch-image .swatch-inner {
+		box-shadow: inset 0 0 0 1px #000;
+	}
+
+	.xt_woovs-single-product .swatch.swatch-image.xt_woovs-selected .swatch-inner {
+		box-shadow: inset 0 0 0 1px #ddd;
+	}
+
 	.entry-summary {
 		width: 48%;
 	}
@@ -57,7 +70,6 @@
 		margin-right: 25px;
 	}
 
-	.quantity,
 	.single_add_to_cart_button {
 		display: inline-block;
 		vertical-align: middle;
@@ -110,10 +122,6 @@
 
 		.reset_variations {
 			margin-left: 10px;
-
-			// &:hover {
-			// 	border-bottom: 1px solid black;
-			// }
 		}
 	}
 
@@ -152,7 +160,8 @@
 	}
 }
 
-.related.products {
+.related.products,
+.up-sells.products {
 	@include mt(70px, 60px, 40px);
 
 	h2 {

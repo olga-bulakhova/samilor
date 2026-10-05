@@ -1,24 +1,46 @@
 .home__heading {
-	color: #fff;
-	text-align: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
+	padding-top: 50px;
+	color: $color-light-text;
 
-	.heading-overlay {
-		padding: 100px 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		height: 100%;
-		font-size: 1.3rem;
-		div {
-			width: 100%;
+	@media (max-width: $md) {
+		padding-top: 28px;
+	}
+
+	h1 {
+		font-weight: 700;
+	}
+
+	.heading-image {
+		img {
+			border-radius: 30px;
+			overflow: hidden;
+		}
+	}
+
+	.heading-subtitle {
+		margin-block: 40px;
+		
+
+		@media (max-width: $md) {
+			margin-block: 20px;
 		}
 	}
 
 	.heading-content {
-		max-width: 800px;
+		display: grid;
+		grid-template-columns: 4fr 5fr;
+		gap: 70px;
 		margin: 0 auto;
+
+		@media (max-width: $md) {
+			grid-template-columns: 1fr;
+			gap: 30px;
+		}
+
+		@media (max-width: $sm) {
+			.btn-expo-secondary {
+				width: 100%;
+			}
+		}
 	}
 }

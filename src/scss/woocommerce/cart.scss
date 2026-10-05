@@ -204,3 +204,42 @@
 .wc-block-cart__submit-container {
 	margin-top: 40px;
 }
+
+/* Стилизация оверлея блокировки корзины */
+.woocommerce-cart-form {
+	position: relative; // Фиксируем контекст наложения
+
+	.blockUI.blockOverlay {
+		// Принудительно меняем белый фон на темный (или любой другой)
+		background-color: transparent !important;
+
+		// Регулируем прозрачность (0.7 — оптимально, чтобы товары были слегка видны)
+		opacity: 0.7 !important;
+
+		// Современный эффект: легкое размытие товаров на заднем плане
+		backdrop-filter: blur(4px);
+
+		// Плавное появление (опционально)
+		transition: all 0.3s ease;
+	}
+}
+
+.cart_totals {
+	.cart-subtotal {
+		display: none !important;
+	}
+}
+
+/* 2. Скрываем строку Подытог на странице Оформления заказа (Checkout) */
+.woocommerce-checkout-review-order-table {
+	.cart-subtotal {
+		display: none !important;
+	}
+}
+
+.cart-collaterals {
+	display: flex;
+	justify-content: flex-end;
+	max-width: 940px;
+	text-align: right;
+}

@@ -1,82 +1,160 @@
-input, textarea {
-  padding: 12px;
-  border-radius: 0;
-  outline: none!important;
-  border: 1px solid $input-border-color;
-  font-family: inherit;
-  max-width: 100%;
-  &:focus{
-    border-color: darken($input-border-color, 20%);
-  }
+input,
+textarea {
+	padding: 12px;
+	border-radius: 20px;
+	outline: none !important;
+	border: 1px solid #fff;
+	background: #fff0 none repeat scroll left top;
+	font-family: inherit;
+	max-width: 100%;
+	color: $color-light-text;
+	&:focus {
+		border-color: darken($input-border-color, 20%);
+	}
 
-  &.error {
-    border-color: $color-danger;
-  }
+	&.error {
+		border-color: $color-danger;
+	}
 }
 
-.woocommerce-input-wrapper {
-  position: relative;
-  display: block;
+// input[type='number']::-webkit-inner-spin-button,
+// input[type='number']::-webkit-outer-spin-button {
+// 	// filter: invert(1); превратит стандартные черные стрелки в чисто белые
+// 	filter: invert(1) brightness(1.5);
 
-  label.error {
-    color: $color-danger;
-    font-size: 12px;
-    position: absolute;
-    bottom: -27px;
-  }
+// 	// Дополнительно можно немного увеличить их прозрачность или отступы
+// 	opacity: 0.8;
+// 	cursor: pointer;
+// }
+
+.woocommerce-input-wrapper {
+	position: relative;
+	display: block;
+
+	label.error {
+		color: $color-danger;
+		font-size: 12px;
+		position: absolute;
+		bottom: -27px;
+	}
 }
 
 .input-text.qty {
-   width: 120px;
-  text-align: center;
+	width: 120px;
+	text-align: center;
 }
 
 @mixin select-no-border {
-  border: none;
-  font-family: inherit;
-  outline: none!important;
+	border: none;
+	font-family: inherit;
+	outline: none !important;
 }
 
 @mixin form-vertical {
-   .form-row {
-       margin-bottom: 18px;
+	.form-row {
+		margin-bottom: 18px;
 
-     label{
-       display: block;
-       margin-bottom: 8px;
-       color: $color-light-text;
-       @include font-style(13px, 13px, 12px);
-     }
+		label {
+			display: block;
+			margin-bottom: 8px;
+			color: $color-light-text;
+			@include font-style(13px, 13px, 12px);
+		}
 
-     .input-text {
-       width: 100%;
-     }
-   }
+		.input-text {
+			width: 100%;
+		}
+	}
 
-  button[type="submit"] {
-    @include button;
-    @include button-primary;
-    margin-top: 20px;
-  }
+	button[type='submit'] {
+		@include button;
+		@include button-primary;
+		margin-top: 20px;
+	}
 
-  em {
-    @include font-style(12px, 12px, 12px);
-  }
+	em {
+		@include font-style(12px, 12px, 12px);
+	}
 }
 
 .woocommerce-form__label-for-checkbox {
-  display: flex!important;
-  align-items: center!important;
-  column-gap: 5px;
-  margin-bottom: 0!important;
+	display: flex !important;
+	align-items: center !important;
+	column-gap: 5px;
+	margin-bottom: 0 !important;
 }
 
 fieldset {
-  border: none;
+	border: none;
 
-  legend {
-    margin-bottom: 10px;
-    @include font-style(18px, 16px, 15px);
-  }
+	legend {
+		margin-bottom: 10px;
+		@include font-style(18px, 16px, 15px);
+	}
 }
 
+/* Скрываем дефолтные стрелки браузера */
+input[type='number'].qty {
+	-moz-appearance: textfield;
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+}
+
+/* Стили для нового блока количества */
+.quantity-controls {
+	display: inline-flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	align-self: center;
+	border: 1px solid #ffffff; // Белая рамка вокруг всего блока
+	border-radius: 20px;
+	overflow: hidden;
+	background: transparent;
+
+	.quantity-btn {
+		background: transparent;
+		border: none;
+		color: #ffffff; // Белый цвет для плюса и минуса
+		width: 37px;
+		height: 37px;
+		cursor: pointer;
+		font-size: 18px;
+		font-weight: bold;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition:
+			background 0.2s ease,
+			color 0.2s ease;
+		padding: 0;
+		user-select: none;
+
+		&:hover {
+			background: #ffffff;
+			color: #000000; // При наведении фон становится белым, а знак черным
+		}
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	input[type='number'].qty {
+		width: 45px;
+		height: 35px;
+		text-align: center;
+		border: none;
+
+		background: transparent;
+		color: #ffffff; // Белый цвет цифр
+		font-size: 16px;
+		padding: 0;
+
+		&:focus {
+			outline: none;
+		}
+	}
+}
