@@ -1,0 +1,95 @@
+.woocommerce-info,
+.woocommerce-form-coupon-toggle {
+	margin-bottom: 10px;
+	a {
+		border-bottom: $border-black;
+	}
+}
+
+.checkout_coupon {
+	p:first-child {
+		margin-bottom: 10px;
+	}
+
+	.form-row-first,
+	.form-row-last {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	.button {
+		@include button;
+		@include link-bold-hover-bolder;
+		margin-left: 15px;
+	}
+}
+
+.woocommerce-billing-fields,
+.woocommerce-additional-fields {
+	@include form-vertical;
+	max-width: 500px;
+
+	h3 {
+		display: none;
+	}
+}
+
+.expo-checkout-form {
+	margin-top: 40px;
+	width: 100%;
+
+	.checkout-wrapper {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: 60px;
+
+		@media (max-width: $md) {
+			grid-template-columns: 1fr;
+			row-gap: 40px;
+		}
+	}
+
+	.create-account {
+		margin-bottom: 15px;
+	}
+
+	// скрываем доставку по адресу
+	.woocommerce-shipping-fields {
+		display: none;
+	}
+
+	.woocommerce-error {
+		margin-top: 0;
+	}
+}
+
+.woocommerce-checkout-review-order {
+	.payment_methods {
+		display: none;
+	}
+
+	.button[type='submit'] {
+		@include button;
+		@include button-primary;
+		margin-top: 30px;
+	}
+}
+
+.checkout-navigation {
+	display: flex;
+	justify-content: flex-end;
+	column-gap: 20px;
+	margin-bottom: -20px;
+	@media (max-width: $md) {
+		margin-bottom: 20px;
+		justify-content: flex-start;
+	}
+
+	a {
+		border-bottom: $border-black;
+	}
+}
+
+.woocommerce-checkout-payment {
+	margin-top: 30px;
+}

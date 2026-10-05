@@ -1,0 +1,110 @@
+@mixin mt($l, $m, $s) {
+  margin-top: $l;
+
+  @media (max-width: $xl) {
+    margin-top: $m;
+  }
+
+  @media (max-width: $sm) {
+    margin-top: $s;
+  }
+}
+
+@mixin mb($l, $m, $s) {
+  margin-bottom: $l;
+
+  @media (max-width: $xl) {
+    margin-bottom: $m;
+  }
+
+  @media (max-width: $sm) {
+    margin-bottom: $s;
+  }
+}
+
+.mt-12 {
+  @include mt(120px, 96px, 50px);
+}
+
+.mb-12 {
+  @include mb(120px, 96px, 50px);
+}
+
+.mt-10 {
+  @include mt(100px, 80px, 45px);
+}
+
+.mb-10 {
+  @include mb(100px, 80px, 45px);
+}
+
+.mt-6 {
+  @include mt(60px, 48px, 35px);
+}
+
+.mb-6 {
+  @include mb(60px, 48px, 35px);
+}
+
+.mt-5 {
+  @include mt(50px, 40px, 30px);
+}
+
+.mb-5 {
+  @include mb(50px, 40px, 30px);
+}
+
+.mt-4 {
+  @include mt(40px, 32px, 24px);
+}
+
+.mb-4 {
+  @include mb(40px, 32px, 24px);
+}
+
+.mt-3 {
+  @include mt(30px, 24px, 18px);
+}
+
+.mb-3 {
+  @include mb(30px, 24px, 18px);
+}
+
+.mt-2 {
+  @include mt(20px, 16px, 14px);
+}
+
+.mb-2 {
+  @include mb(20px, 16px, 14px);
+}
+
+.mt-1 {
+  @include mt(10px, 8px, 6px);
+}
+
+.mb-1 {
+  @include mb(10px, 8px, 6px);
+}
+
+.mt-05 {
+  @include mt(5px, 4px, 3px);
+}
+
+.mb-05 {
+  @include mb(5px, 4px, 3px);
+}
+
+@media (max-width: $sm) {
+  .mt-12-mobile {
+    margin-top: 120px!important;
+  }
+
+  .mb-12-mobile {
+    margin-bottom: 120px!important;
+  }
+}
+
+
+
+
+

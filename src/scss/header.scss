@@ -1,0 +1,148 @@
+.expo-header {
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	width: 100%;
+	background-color: $background-page;
+	font-size: 0.9rem;
+	font-weight: 600;
+	border-bottom: $border-gray;
+
+	@media (max-width: $sm) {
+		font-size: 13px;
+	}
+
+	a,
+	span {
+		color: $color-light-text;
+		cursor: pointer;
+	}
+
+	.menu-item-phone {
+		display: flex !important;
+		height: auto !important;
+		column-gap: 20px;
+
+		@media (max-width: $sm) {
+			flex-direction: column;
+		}
+	}
+
+	.header-menu {
+		display: flex;
+		align-items: center;
+
+		height: 100%;
+
+		&.header-menu-left {
+			column-gap: 30px;
+
+			@media (max-width: $sm) {
+				column-gap: 20px;
+			}
+			li {
+				&:hover {
+					> a,
+					> span {
+						color: $color-dark-text;
+					}
+				}
+			}
+		}
+
+		&.header-menu-right {
+			column-gap: 15px;
+			li {
+				&:hover {
+					> a,
+					> span {
+						.icon {
+							transform: scale(1.1);
+							transform-origin: center;
+						}
+					}
+				}
+			}
+		}
+
+		> li {
+			display: block;
+			height: 52px;
+			padding: 15px 0;
+			vertical-align: middle;
+		}
+
+		.sub-menu {
+			visibility: hidden;
+			display: flex;
+			position: fixed;
+			top: 50px;
+			left: 0;
+			right: 0;
+			background-color: $background-page;
+			justify-content: center;
+			flex-wrap: wrap;
+			padding: 30px 10%;
+			column-gap: 30px;
+			row-gap: 10px;
+			border-top: $border-gray;
+			box-shadow: 0 13px 23px rgba(0, 0, 0, 0.11);
+
+			a {
+				&:hover {
+					color: $color-dark-text;
+					border-bottom: 1px solid $color-dark-text;
+				}
+			}
+		}
+	}
+
+	.header-actions {
+		.icon {
+			transition: transform 0.1s;
+			&.icon-account {
+				width: 20px;
+				height: 21px;
+			}
+
+			&.icon-cart {
+				width: 44px;
+				height: 44px;
+				position: relative;
+				top: -10px;
+			}
+
+			&.icon-search {
+				width: 19px;
+				height: 19px;
+				margin-right: 8px;
+				position: relative;
+				top: 3px;
+			}
+		}
+	}
+
+	.open-cart {
+		position: relative;
+	}
+
+	.cart-badge {
+		position: absolute;
+		bottom: -1px;
+		right: -9px;
+		width: 16px;
+		height: 16px;
+		border-radius: 100%;
+		color: #000;
+
+		background-color: $background-color-primary-button;
+		font-size: 10px;
+		font-weight: 600;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&.count-0 {
+			display: none;
+		}
+	}
+}

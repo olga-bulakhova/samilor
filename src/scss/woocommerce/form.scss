@@ -1,0 +1,82 @@
+input, textarea {
+  padding: 12px;
+  border-radius: 0;
+  outline: none!important;
+  border: 1px solid $input-border-color;
+  font-family: inherit;
+  max-width: 100%;
+  &:focus{
+    border-color: darken($input-border-color, 20%);
+  }
+
+  &.error {
+    border-color: $color-danger;
+  }
+}
+
+.woocommerce-input-wrapper {
+  position: relative;
+  display: block;
+
+  label.error {
+    color: $color-danger;
+    font-size: 12px;
+    position: absolute;
+    bottom: -27px;
+  }
+}
+
+.input-text.qty {
+   width: 120px;
+  text-align: center;
+}
+
+@mixin select-no-border {
+  border: none;
+  font-family: inherit;
+  outline: none!important;
+}
+
+@mixin form-vertical {
+   .form-row {
+       margin-bottom: 18px;
+
+     label{
+       display: block;
+       margin-bottom: 8px;
+       color: $color-light-text;
+       @include font-style(13px, 13px, 12px);
+     }
+
+     .input-text {
+       width: 100%;
+     }
+   }
+
+  button[type="submit"] {
+    @include button;
+    @include button-primary;
+    margin-top: 20px;
+  }
+
+  em {
+    @include font-style(12px, 12px, 12px);
+  }
+}
+
+.woocommerce-form__label-for-checkbox {
+  display: flex!important;
+  align-items: center!important;
+  column-gap: 5px;
+  margin-bottom: 0!important;
+}
+
+fieldset {
+  border: none;
+
+  legend {
+    margin-bottom: 10px;
+    @include font-style(18px, 16px, 15px);
+  }
+}
+

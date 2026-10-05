@@ -1,0 +1,54 @@
+#customer_login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 60px;
+
+  @media (max-width: $md) {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+
+  h2 {
+    @include font-style(24px, 20px, 18px);
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+}
+
+
+.woocommerce-form-login, .woocommerce-form-register, .lost_reset_password, .edit-account {
+  @include form-vertical;
+  max-width: 500px;
+
+  @media (max-width: $md) {
+    max-width: 100%;
+  }
+}
+
+.lost_reset_password{
+   .woocommerce-form-row--first {
+     margin-top: 20px;
+   }
+}
+
+.woocommerce-form-login {
+
+  position: relative;
+  .form-row-first {
+    margin-top: 20px;
+  }
+  .lost_password {
+    @include font-style(13px, 13px, 12px);
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    border-bottom: 1px solid transparent;
+    &:hover {
+      border-bottom: $border-black;
+    }
+  }
+}
+
+.woocommerce-form-register {
+
+}

@@ -1,0 +1,66 @@
+@font-face {
+  font-family:star;
+  src:url(fonts/star.eot);
+  src:url(fonts/star.eot?#iefix) format("embedded-opentype"),url(fonts/star.woff) format("woff"),url(fonts/star.ttf) format("truetype"),url(fonts/star.svg#star) format("svg");
+  font-weight:400;
+  font-style:normal;
+}
+.star-rating {
+  font-size: .857em;
+}
+.star-rating {
+  overflow: hidden;
+  position: relative;
+  height: 1em;
+  line-height: 1.2;
+  font-size: 14px;
+  width: 5.4em;
+  font-family: star;
+}
+.star-rating::before {
+  content: "sssss";
+  color: #d3ced2;
+  float: left;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+.star-rating span {
+  overflow: hidden;
+  float: left;
+  top: 0;
+  left: 0;
+  position: absolute;
+  padding-top: 1.5em;
+}
+.star-rating span::before {
+  content: "SSSSS";
+  top: 0;
+  position: absolute;
+  left: 0;
+  color: #000;
+}
+.woocommerce-product-rating {
+  line-height: 2;
+  display: block;
+}
+.woocommerce-product-rating::after,
+.woocommerce-product-rating::before {
+  content: " ";
+  display: table;
+}
+.woocommerce-product-rating::after {
+  clear: both;
+}
+.woocommerce-product-rating .star-rating {
+  margin: .5em 4px 0 0;
+  float: left;
+}
+.products .star-rating {
+  display: block;
+  float: none;
+}
+
+.hreview-aggregate .star-rating {
+  margin: 10px 0 0;
+}

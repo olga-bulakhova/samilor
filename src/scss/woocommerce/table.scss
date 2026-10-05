@@ -1,0 +1,96 @@
+@mixin table {
+  border-collapse: collapse;
+  width: 100%;
+
+
+ thead th {
+   text-transform: uppercase;
+   color: $color-light-text;
+   font-size: 10px;
+   letter-spacing: 1px;
+   font-weight: 400;
+   padding: 0 5px 15px 5px;
+  }
+
+  th, td {
+    text-align: left;
+  }
+
+  td {
+    padding: 5px;
+  }
+}
+
+@mixin table-horizontal {
+  td {
+    border-bottom: $border-gray;
+  }
+
+  tr:last-child td {
+    border-color: transparent;
+  }
+}
+
+@mixin table-vertical {
+  td, th {
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  tbody{
+    td, th {
+      border-bottom: $border-gray;
+    }
+
+    tr:last-child {
+      th, td{
+        border-color: transparent;
+      }
+    }
+
+
+  }
+  tfoot {
+    th {
+      font-weight: 600;
+    }
+
+    td, th {
+      padding: 2px 5px;
+    }
+
+    tr:first-child{
+      td, th {
+        padding-top: 10px;
+      }
+    }
+  }
+}
+
+.account-orders-table {
+  @include table;
+  @include table-horizontal;
+}
+
+.woocommerce-table--order-details {
+  a{
+    border: none;
+  }
+  max-width: 700px;
+  @include table;
+  @include table-vertical;
+}
+
+.woocommerce-checkout-review-order-table {
+  @include table;
+  @include table-vertical;
+  width: 100%;
+  //max-width: 00px;
+  margin-top: 30px;
+    .variation {
+      dt, dd {
+        display: inline-block;
+      }
+    }
+}

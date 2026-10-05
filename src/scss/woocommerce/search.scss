@@ -1,0 +1,13 @@
+.aws-container {
+  width: 350px;
+  max-width: 100%;
+
+  .aws_result_title, .aws_search_more {
+
+  }
+}
+
+.aws-search-result .aws_result_title, .aws-search-result .aws_search_more a {
+  color: $color-dark-text;
+  font-weight: 600;
+}

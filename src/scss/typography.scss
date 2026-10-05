@@ -1,0 +1,80 @@
+@mixin font-style($l, $m, $s) {
+  font-size: $l;
+
+  @media (max-width: $xl) {
+    font-size: $m;
+  }
+
+  @media (max-width: $sm) {
+    font-size: $s;
+  }
+}
+
+.home-page-main {
+  h1 {
+    @include font-style(50px, 42px, 35px);
+    color: #fff;
+  }
+
+}
+
+.site-main {
+  h1 {
+    @include font-style(45px, 38px, 35px);
+  }
+}
+
+h1, h2, h3 {
+  color: $color-title;
+}
+
+h1{
+  font-weight: 600;
+  line-height: 1;
+}
+
+h2 {
+  @include font-style(40px, 36px, 25px);
+  font-weight: 500;
+  letter-spacing: -0.2px;
+}
+
+h3 {
+  @include font-style(24px, 20px, 18px);
+  font-weight: 500;
+  letter-spacing: -0.2px;
+}
+
+.text-basic {
+  @include font-style(16px, 15px, 14);
+}
+
+.text-medium {
+  @include font-style(18px, 16px, 15px);
+}
+
+.text-large {
+  @include font-style(24px, 20px, 18px);
+}
+
+.fw-400 {
+  font-weight: 400!important;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+
+
+
+
+

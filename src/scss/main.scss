@@ -1,0 +1,129 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-rendering: optimizeLegibility !important;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	background-color: $background-page;
+	@include font-style(14px, 14px, 14px);
+}
+
+.expo-container {
+	max-width: 1920px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	min-height: 100vh;
+}
+
+@mixin wrapper {
+	width: 100%;
+	max-width: 1380px;
+	margin: 0 auto;
+	padding-right: 60px;
+	padding-left: 60px;
+
+	@media (max-width: $md) {
+		padding-right: 20px;
+		padding-left: 20px;
+	}
+}
+
+.home-page-main {
+	padding-top: 52px;
+}
+
+.site-main {
+	padding-top: 80px;
+	padding-bottom: 100px;
+	// @include wrapper;
+
+	@media (max-width: $sm) {
+		padding-top: 70px;
+		padding-bottom: 70px;
+	}
+}
+
+//article {
+//  .entry-content {
+//     @include wrapper;
+//  }
+//}
+
+.wrapper {
+	@include wrapper;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+mark {
+	background-color: #eaeff3;
+}
+
+h1,
+h2,
+h3 {
+	margin: 0;
+}
+
+.center {
+	text-align: center;
+}
+
+.lh150 {
+	line-height: 1.5;
+}
+
+strong {
+	font-weight: 600;
+}
+
+@mixin link-bold-hover-bolder {
+	@include font-style(14px, 14px, 14px);
+	font-weight: 600;
+	color: $color-dark-text;
+
+	&:hover {
+		border-bottom: 1px solid $color-dark-text;
+	}
+}
+
+.link-bold-hover-bolder {
+	@include link-bold-hover-bolder;
+}
+
+.desktop {
+	@media (max-width: $lg) {
+		display: none;
+	}
+}
+
+.hidden {
+	display: none;
+}
+
+.w-100 {
+	width: 100%;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.border-bottom-black {
+	border-bottom: $border-black;
+}

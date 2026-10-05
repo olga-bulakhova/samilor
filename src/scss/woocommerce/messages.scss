@@ -1,0 +1,20 @@
+@mixin alert {
+  display: inline-block;
+  padding: 5px 10px;
+  font-weight: 500;
+  margin: 20px 0;
+  @include font-style(13px, 13px, 12px);
+  a {
+    border-bottom: 1px solid black;
+  }
+}
+
+.woocommerce-message {
+  @include alert;
+  background-color: #eaeff3;
+}
+
+.woocommerce-error {
+  @include alert;
+  background-color: #f8c1c1;
+}

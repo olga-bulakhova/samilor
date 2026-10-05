@@ -1,0 +1,81 @@
+.expo-mini-cart {
+	width: 400px;
+	max-width: 100%;
+	position: fixed;
+	top: 52px;
+	right: 0;
+	bottom: 0;
+	background-color: $background-page;
+	z-index: 160;
+	border-left: $border-gray;
+	overflow-y: auto;
+	padding: 45px 10px 30px;
+	line-height: 1.2;
+	font-size: 14px;
+
+	&::-webkit-scrollbar {
+		width: 0;
+	}
+
+	.mini-card-close {
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		cursor: pointer;
+	}
+
+	table.woocommerce-mini-cart {
+		width: 100%;
+
+		td {
+			padding: 3px 5px;
+			border-bottom: $border-gray;
+
+			&:first-child {
+				padding-left: 0;
+			}
+		}
+
+		.product-img-td {
+			width: 20%;
+		}
+
+		.product-name-td {
+			width: 32%;
+		}
+		.product-price-td {
+			width: 28%;
+		}
+
+		.product-quantity-td {
+			width: 10%;
+		}
+
+		.product-delete-td {
+			width: 10%;
+			text-align: right;
+
+			a {
+				color: $color-light-text;
+
+				&:hover {
+					color: $color-dark-text;
+				}
+			}
+		}
+
+		img {
+			width: 100%;
+			height: auto !important;
+		}
+	}
+
+	.woocommerce-mini-cart__total {
+		margin-top: 15px;
+		text-align: right;
+
+		strong {
+			font-weight: 600;
+		}
+	}
+}

@@ -1,0 +1,22 @@
+.expo-footer {
+   background-color: $background-color-footer;
+   padding: 36px 0 45px;
+
+  .footer-title {
+    color: #fff;
+    font-weight: 600;
+    @include font-style(20px, 17px, 16px);
+  }
+
+  .footer-text {
+    color: rgba(255, 255, 255, 0.75);
+    @include font-style(14px, 14px, 14px);
+  }
+
+  a{
+    color: inherit;
+    &:hover{
+      border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+    }
+  }
+}

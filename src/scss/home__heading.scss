@@ -1,0 +1,24 @@
+.home__heading {
+	color: #fff;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+
+	.heading-overlay {
+		padding: 100px 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		font-size: 1.3rem;
+		div {
+			width: 100%;
+		}
+	}
+
+	.heading-content {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+}
