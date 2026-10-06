@@ -49,9 +49,9 @@ table.variations {
 
 	td.value {
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		flex-wrap: wrap;
-		gap: 15px;
+		column-gap: 15px;
 		position: relative;
 
 		// .xt_woovs-hidden {
@@ -68,6 +68,9 @@ table.variations {
 		gap: 6px;
 
 		li.swatch {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			width: 50px;
 			height: 50px;
 			padding: 2px;
@@ -121,5 +124,3 @@ table.variations {
 		}
 	}
 }
-
-
