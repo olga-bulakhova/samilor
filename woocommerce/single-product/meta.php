@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Single Product Meta
  *
@@ -15,7 +16,7 @@
  * @version     3.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit;
 }
 
@@ -23,18 +24,19 @@ global $product;
 ?>
 <div class="product_meta">
 
-	<?php do_action( 'woocommerce_product_meta_start' ); ?>
+	<?php do_action('woocommerce_product_meta_start'); ?>
 
-	<?php if ( wc_product_sku_enabled() && ( $product->get_sku() || $product->is_type( 'variable' ) ) ) : ?>
+	<?php
+	// Изменено условие: проверяем, включены ли артикулы на сайте И задан ли артикул у самого товара
+	if (wc_product_sku_enabled() && ! empty($product->get_sku())) :
+	?>
 
-		<div class="sku_wrapper text-basic"><?php esc_html_e( 'SKU:', 'woocommerce' ); ?> <span class="sku"><?php echo ( $sku = $product->get_sku() ) ? $sku : esc_html__( 'N/A', 'woocommerce' ); ?></span></div>
+		<div class="sku_wrapper text-basic">
+			<?php esc_html_e('SKU:', 'woocommerce'); ?>
+			<span class="sku"><?php echo esc_html($product->get_sku()); ?></span>
+		</div>
 
 	<?php endif; ?>
 
-<!--	--><?php //echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="posted_in">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'woocommerce' ) . ' ', '</span>' ); ?>
-<!---->
-<!--	--><?php //echo wc_get_product_tag_list( $product->get_id(), ', ', '<span class="tagged_as">' . _n( 'Tag:', 'Tags:', count( $product->get_tag_ids() ), 'woocommerce' ) . ' ', '</span>' ); ?>
-
-	<?php do_action( 'woocommerce_product_meta_end' ); ?>
-
+	<?php do_action('woocommerce_product_meta_end'); ?>
 </div>

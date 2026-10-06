@@ -129,7 +129,7 @@ strong {
 }
 
 .expo-subtitle {
-	font-size: 22px;
+	@include font-style(22px, 22px, 18px);
 	font-weight: 500;
 	color: $color-light-text;
 }
@@ -140,4 +140,12 @@ strong {
 
 .text-underline {
 	text-decoration: underline;
+}
+
+.text-bold {
+	font-weight: 800;
+}
+
+.button.text-transparent {
+	color: transparent !important;
 }

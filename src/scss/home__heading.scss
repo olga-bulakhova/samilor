@@ -19,10 +19,17 @@
 
 	.heading-subtitle {
 		margin-block: 40px;
-		
 
 		@media (max-width: $md) {
 			margin-block: 20px;
+		}
+	}
+
+	.heading-info {
+		padding-top: 50px;
+
+		@media (max-width: $md) {
+			padding-top: 0;
 		}
 	}
 

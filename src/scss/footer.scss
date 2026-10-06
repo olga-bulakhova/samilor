@@ -1,22 +1,23 @@
 .expo-footer {
-   background-color: $background-color-footer;
-   padding: 36px 0 45px;
+	background-color: $background-color-footer;
+	padding: 36px 0 45px;
+	border-top: $border-gray;
 
-  .footer-title {
-    color: #fff;
-    font-weight: 600;
-    @include font-style(20px, 17px, 16px);
-  }
+	.footer-text {
+		color: rgba(255, 255, 255, 0.75);
+		@include font-style(14px, 14px, 12px);
+		line-height: 1.5;
+	}
 
-  .footer-text {
-    color: rgba(255, 255, 255, 0.75);
-    @include font-style(14px, 14px, 14px);
-  }
+	.footer-links {
+		color: $color-links;
 
-  a{
-    color: inherit;
-    &:hover{
-      border-bottom: 1px solid rgba(255, 255, 255, 0.75);
-    }
-  }
+		a {
+			color: inherit;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
 }

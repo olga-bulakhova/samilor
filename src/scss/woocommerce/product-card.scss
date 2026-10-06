@@ -2,8 +2,8 @@
 	padding: 0 20px;
 
 	&:hover {
-		h4 a {
-			border-bottom: 1px solid $color-dark-text;
+		.product-thumb img {
+			transform: scale(1.05);
 		}
 	}
 
@@ -19,19 +19,22 @@
 	.product-thumb {
 		line-height: 0;
 		overflow: hidden;
+		aspect-ratio: 1/1;
+		border-radius: $border-radius;
 
 		a {
 			display: block;
-			max-height: 300px;
+			height: 100%;
 			overflow: hidden;
 		}
 
 		img {
 			height: 100% !important;
 			width: 100% !important;
-			max-height: 300px;
+
 			object-fit: cover;
-			border-radius: $border-radius;
+
+			transition: transform 0.3s ease;
 		}
 
 		@media (max-width: $sm) {
@@ -60,9 +63,6 @@
 
 			a {
 				color: $color-dark-text;
-				&:hover {
-					border-bottom: 1px solid $color-dark-text;
-				}
 			}
 		}
 	}
@@ -87,6 +87,8 @@
 
 .onsale,
 .offer-new {
+	position: relative;
+	z-index: 3;
 	display: inline-block;
 	vertical-align: middle;
 	color: #fff;

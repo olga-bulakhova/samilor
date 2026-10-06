@@ -2,22 +2,30 @@
 
 <footer class="expo-footer">
     <div class="wrapper">
-        <div class="footer-title mb-2">Контакты</div>
-        <div class="footer-text mb-1">Телефоны:
-            <?php if (! empty($expo_theme_info['phone_1'])): ?>
-                <a href="tel:+<?php echo str_replace(array(' ', '-', '+'), array('', '', ''), $expo_theme_info['phone_1']) ?>"><?php echo $expo_theme_info['phone_1'] ?></a>
-            <?php endif; ?>
-            &nbsp;
-            <?php if (! empty($expo_theme_info['phone_2'])): ?>
-                <a href="tel:+<?php echo str_replace(array(' ', '-', '+'), array('', '', ''), $expo_theme_info['phone_2']) ?>"><?php echo $expo_theme_info['phone_2'] ?></a>
-            <?php endif; ?>
+
+        <div class="footer-text">
+            Частное унитарное предприятие "Самилор групп"
         </div>
         <div class="footer-text">
-            © Copyright <?php echo date("Y"); ?>, Prince Toys | <a href="/privacy-policy/">Privacy policy</a>
+            Регистрационный номер 193941926, УНП 193941926
         </div>
-        <!-- <?php if (! empty($expo_theme_info['address'])): ?>
-             <div class="footer-text">Адрес: <?php echo $expo_theme_info['address'] ?></div>
-             <?php endif; ?> -->
+        <div class="footer-text">
+            ОАО "Белагропромбанк", БИК BAPBBY2X
+        </div>
+        <div class="footer-text">
+            220036, г.Минск, пр. Жукова, д. 3
+        </div>
+        <div class="footer-text">
+            Юр. Адрес Минск К.туровского 22-53
+        </div>
+        <div class="footer-text footer-links">
+            <a href="https://docs.google.com/document/d/1h82X8wYOn26_vw2Ac8J-TyxFu0JLfKizyFmzuQ9a8y0/edit?usp=sharing" target="_blank">Договор оферты</a>
+            | <a href="https://docs.google.com/document/d/1mNU16FKOn1s0Ah9K7BkPXE4FlT936yebJ0l_-lDvmjk/edit?usp=sharing" target="_blank">Политика конфиденциальности</a>
+            | <a href="https://docs.google.com/document/d/1mlFqk91gnJH3tsOgjzZlAbrJeamcHZ7wHDOTZ99YSjQ/edit?usp=sharing" target="_blank">Доставка и оплата</a>
+        </div>
+        <div class="footer-text">
+
+        </div>
     </div>
 </footer>
 </div>

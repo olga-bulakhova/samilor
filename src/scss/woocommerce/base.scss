@@ -8,10 +8,10 @@
 		color: #ffffff;
 	}
 
-	// Цены в каталоге и внутри карточки
-	ul.products li.product .price,
+	Цены в каталоге и внутри карточки ul.products li.product .price,
 	div.product .price {
-		color: #ffffff;
+		color: $color-light-text;
+		font-weight: 600;
 	}
 
 	// Ссылки, хлебные крошки и мелкий текст
