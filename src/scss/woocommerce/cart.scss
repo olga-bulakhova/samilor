@@ -1,3 +1,9 @@
+@use "../buttons";
+@use "../main";
+@use "../margins";
+@use "../typography";
+@use "../variables";
+
 .cart_shop_table {
 	width: 100%;
 	max-width: 900px;
@@ -6,7 +12,7 @@
 		text-align: left;
 		font-weight: 400;
 		text-transform: uppercase;
-		color: $color-light-text;
+		color: variables.$color-light-text;
 		font-size: 10px;
 		letter-spacing: 1px;
 		padding-bottom: 20px;
@@ -43,7 +49,7 @@
 			a {
 				display: inline-block;
 				font-weight: 600;
-				@include font-style(16px, 15px, 14);
+				@include typography.font-style(16px, 15px, 14);
 				color: inherit;
 				margin-bottom: 5px;
 				border-bottom: 1px solid transparent;
@@ -74,12 +80,12 @@
 			}
 
 			.apply-coupon-button {
-				@include button;
-				@include link-bold-hover-bolder;
+				@include buttons.button;
+				@include main.link-bold-hover-bolder;
 				margin-left: 15px;
 			}
 
-			@media (max-width: $sm) {
+			@media (max-width: variables.$sm) {
 				#coupon_code {
 					width: 100%;
 					margin-bottom: 15px;
@@ -100,10 +106,10 @@
 	}
 
 	.checkout-button {
-		@include button;
-		@include button-primary;
+		@include buttons.button;
+		@include buttons.button-primary;
 
-		@media (max-width: $sm) {
+		@media (max-width: variables.$sm) {
 			width: 100%;
 		}
 	}
@@ -127,7 +133,7 @@
 	}
 }
 
-@media (max-width: $md) {
+@media (max-width: variables.$md) {
 	.cart_shop_table {
 		thead {
 			display: none;
@@ -178,10 +184,10 @@
 
 .cross-sells {
 	// @include mb(50px, 40px, 30px);
-	@include mt(70px, 60px, 35px);
+	@include margins.mt(70px, 60px, 35px);
 	h2 {
-		@include font-style(24px, 20px, 18px);
-		@include mb(30px, 24px, 18px);
+		@include typography.font-style(24px, 20px, 18px);
+		@include margins.mb(30px, 24px, 18px);
 	}
 }
 
@@ -197,8 +203,8 @@
 }
 
 .wc-block-components-button {
-	@include button;
-	@include button-primary;
+	@include buttons.button;
+	@include buttons.button-primary;
 }
 
 .wc-block-cart__submit-container {

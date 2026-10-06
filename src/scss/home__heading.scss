@@ -1,8 +1,10 @@
+@use "variables";
+
 .home__heading {
 	padding-top: 50px;
-	color: $color-light-text;
+	color: variables.$color-light-text;
 
-	@media (max-width: $md) {
+	@media (max-width: variables.$md) {
 		padding-top: 28px;
 	}
 
@@ -20,7 +22,7 @@
 	.heading-subtitle {
 		margin-block: 40px;
 
-		@media (max-width: $md) {
+		@media (max-width: variables.$md) {
 			margin-block: 20px;
 		}
 	}
@@ -28,7 +30,7 @@
 	.heading-info {
 		padding-top: 50px;
 
-		@media (max-width: $md) {
+		@media (max-width: variables.$md) {
 			padding-top: 0;
 		}
 	}
@@ -39,12 +41,12 @@
 		gap: 70px;
 		margin: 0 auto;
 
-		@media (max-width: $md) {
+		@media (max-width: variables.$md) {
 			grid-template-columns: 1fr;
 			gap: 30px;
 		}
 
-		@media (max-width: $sm) {
+		@media (max-width: variables.$sm) {
 			.btn-expo-secondary {
 				width: 100%;
 			}

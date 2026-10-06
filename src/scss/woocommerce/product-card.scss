@@ -1,3 +1,6 @@
+@use "../typography";
+@use "../variables";
+
 .expo-product-card {
 	padding: 0 20px;
 
@@ -20,7 +23,7 @@
 		line-height: 0;
 		overflow: hidden;
 		aspect-ratio: 1/1;
-		border-radius: $border-radius;
+		border-radius: variables.$border-radius;
 
 		a {
 			display: block;
@@ -37,7 +40,7 @@
 			transition: transform 0.3s ease;
 		}
 
-		@media (max-width: $sm) {
+		@media (max-width: variables.$sm) {
 			a {
 				max-height: 350px;
 			}
@@ -58,11 +61,11 @@
 
 	.product-details {
 		h4 {
-			@include font-style(14px, 14px, 14px);
+			@include typography.font-style(14px, 14px, 14px);
 			font-weight: 600;
 
 			a {
-				color: $color-dark-text;
+				color: variables.$color-dark-text;
 			}
 		}
 	}

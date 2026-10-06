@@ -1,6 +1,9 @@
+@use "../buttons";
+@use "../variables";
+
 .woocommerce-Reviews {
   padding: 24px;
-  border: $border-gray;
+  border: variables.$border-gray;
 
   .toggle-reviews-form {
     cursor: pointer;
@@ -35,7 +38,7 @@
     }
   }
 
-  @media (max-width: $sm) {
+  @media (max-width: variables.$sm) {
     padding: 15px 0;
     border: none;
 
@@ -53,12 +56,12 @@
 
 .commentlist {
   list-style: none;
-  color: $color-title;
+  color: variables.$color-title;
   .review {
     padding: 24px 0;
-    border-top: $border-gray;
+    border-top: variables.$border-gray;
 
-    @media (max-width: $sm) {
+    @media (max-width: variables.$sm) {
       padding: 15px 0;
     }
 
@@ -88,8 +91,8 @@
        height: 20px;
        font-weight: 600;
        border-radius: 100%;
-       background-color: $background-color-primary-button;
-       color: $color-primary-button;
+       background-color: variables.$background-color-primary-button;
+       color: variables.$color-primary-button;
        text-align: center;
        font-size: 13px;
        padding: 2px;
@@ -102,8 +105,8 @@
    }
 
   .submit {
-    @include button;
-    @include button-primary;
+    @include buttons.button;
+    @include buttons.button-primary;
     margin-top: 15px;
   }
 }

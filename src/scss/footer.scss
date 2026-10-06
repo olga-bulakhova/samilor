@@ -1,16 +1,19 @@
+@use "typography";
+@use "variables";
+
 .expo-footer {
-	background-color: $background-color-footer;
+	background-color: variables.$background-color-footer;
 	padding: 36px 0 45px;
-	border-top: $border-gray;
+	border-top: variables.$border-gray;
 
 	.footer-text {
 		color: rgba(255, 255, 255, 0.75);
-		@include font-style(14px, 14px, 12px);
+		@include typography.font-style(14px, 14px, 12px);
 		line-height: 1.5;
 	}
 
 	.footer-links {
-		color: $color-links;
+		color: variables.$color-links;
 
 		a {
 			color: inherit;

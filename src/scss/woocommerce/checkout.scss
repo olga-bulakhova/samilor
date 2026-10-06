@@ -1,8 +1,13 @@
+@use "../buttons";
+@use "../main";
+@use "../variables";
+@use "form";
+
 .woocommerce-info,
 .woocommerce-form-coupon-toggle {
 	margin-bottom: 10px;
 	a {
-		border-bottom: $border-black;
+		border-bottom: variables.$border-black;
 	}
 }
 
@@ -18,15 +23,15 @@
 	}
 
 	.button {
-		@include button;
-		@include link-bold-hover-bolder;
+		@include buttons.button;
+		@include main.link-bold-hover-bolder;
 		margin-left: 15px;
 	}
 }
 
 .woocommerce-billing-fields,
 .woocommerce-additional-fields {
-	@include form-vertical;
+	@include form.form-vertical;
 	max-width: 500px;
 
 	h3 {
@@ -43,7 +48,7 @@
 		grid-template-columns: 1fr 1fr;
 		column-gap: 60px;
 
-		@media (max-width: $md) {
+		@media (max-width: variables.$md) {
 			grid-template-columns: 1fr;
 			row-gap: 40px;
 		}
@@ -69,8 +74,8 @@
 	}
 
 	.button[type='submit'] {
-		@include button;
-		@include button-primary;
+		@include buttons.button;
+		@include buttons.button-primary;
 		margin-top: 30px;
 	}
 }
@@ -80,13 +85,13 @@
 	justify-content: flex-end;
 	column-gap: 20px;
 	margin-bottom: -20px;
-	@media (max-width: $md) {
+	@media (max-width: variables.$md) {
 		margin-bottom: 20px;
 		justify-content: flex-start;
 	}
 
 	a {
-		border-bottom: $border-black;
+		border-bottom: variables.$border-black;
 	}
 }
 

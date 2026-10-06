@@ -1,11 +1,13 @@
+@use "variables";
+
 @mixin font-style($l, $m, $s) {
 	font-size: $l;
 
-	@media (max-width: $xl) {
+	@media (max-width: variables.$xl) {
 		font-size: $m;
 	}
 
-	@media (max-width: $sm) {
+	@media (max-width: variables.$sm) {
 		font-size: $s;
 	}
 }
@@ -27,7 +29,7 @@ h1,
 h2,
 h3,
 h4 {
-	color: $color-title;
+	color: variables.$color-title;
 	text-transform: uppercase;
 	font-weight: 600;
 }

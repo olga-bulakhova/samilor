@@ -1,3 +1,5 @@
+@use "../variables";
+
 /* Перекрашиваем текстовые элементы WooCommerce */
 .woocommerce {
 	color: #ffffff;
@@ -10,7 +12,7 @@
 
 	Цены в каталоге и внутри карточки ul.products li.product .price,
 	div.product .price {
-		color: $color-light-text;
+		color: variables.$color-light-text;
 		font-weight: 600;
 	}
 

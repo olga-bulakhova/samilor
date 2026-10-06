@@ -1,3 +1,5 @@
+@use "../variables";
+
 .aws-container {
 	width: 350px;
 	max-width: 100%;
@@ -5,14 +7,14 @@
 
 .aws-search-result .aws_result_title,
 .aws-search-result .aws_search_more a {
-	color: $color-dark-text;
+	color: variables.$color-dark-text;
 	font-weight: 600;
 }
 
 .aws-container .aws-search-field {
-	color: $color-light-text;
+	color: variables.$color-light-text;
 }
 
 .aws-container .aws-search-field:focus {
-	background-color: $background-page;
+	background-color: variables.$background-page;
 }

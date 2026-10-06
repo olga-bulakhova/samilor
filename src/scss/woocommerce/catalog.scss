@@ -1,14 +1,17 @@
+@use "../margins";
+@use "../variables";
+
 .woocommerce-products-header__title {
-	@include mt(25px, 20px, 15px);
+	@include margins.mt(25px, 20px, 15px);
 }
 
 .woocommerce-breadcrumb {
 	font-size: 12px;
 	color: rgb(180, 176, 176);
 	a {
-		color: $color-dark-text;
+		color: variables.$color-dark-text;
 		&:hover {
-			border-bottom: 1px solid $color-dark-text;
+			border-bottom: 1px solid variables.$color-dark-text;
 		}
 	}
 }
@@ -16,7 +19,7 @@
 .woocommerce-product-ordering {
 	gap: 40px;
 
-	@media (max-width: $sm) {
+	@media (max-width: variables.$sm) {
 		gap: 10px;
 	}
 }
@@ -85,7 +88,7 @@
 	color: inherit;
 	line-height: 1;
 
-	@media (max-width: $sm) {
+	@media (max-width: variables.$sm) {
 		padding: 8px 15px 8px 25px;
 
 		&:hover {

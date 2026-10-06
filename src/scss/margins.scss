@@ -1,11 +1,13 @@
+@use "variables";
+
 @mixin mt($l, $m, $s) {
 	margin-top: $l;
 
-	@media (max-width: $xl) {
+	@media (max-width: variables.$xl) {
 		margin-top: $m;
 	}
 
-	@media (max-width: $sm) {
+	@media (max-width: variables.$sm) {
 		margin-top: $s;
 	}
 }
@@ -13,11 +15,11 @@
 @mixin mb($l, $m, $s) {
 	margin-bottom: $l;
 
-	@media (max-width: $xl) {
+	@media (max-width: variables.$xl) {
 		margin-bottom: $m;
 	}
 
-	@media (max-width: $sm) {
+	@media (max-width: variables.$sm) {
 		margin-bottom: $s;
 	}
 }
@@ -94,7 +96,7 @@
 	@include mb(5px, 4px, 3px);
 }
 
-@media (max-width: $sm) {
+@media (max-width: variables.$sm) {
 	.mt-12-mobile {
 		margin-top: 120px !important;
 	}

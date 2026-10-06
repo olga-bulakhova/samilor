@@ -1,5 +1,8 @@
+@use "../margins";
+@use "../variables";
+
 .woocommerce-pagination {
-	@include mt(80px, 64px, 55px);
+	@include margins.mt(80px, 64px, 55px);
 
 	.page-numbers {
 		display: flex;
@@ -17,20 +20,20 @@
 		}
 
 		span {
-			color: $color-links;
+			color: variables.$color-links;
 		}
 
 		a {
-			color: $color-dark-text;
+			color: variables.$color-dark-text;
 			&:hover:not(.next):not(.prev) {
-				border-bottom: 1px solid $color-dark-text;
+				border-bottom: 1px solid variables.$color-dark-text;
 			}
 		}
 
 		a.next,
 		a.prev {
 			font-size: 20px;
-			color: $color-light-text;
+			color: variables.$color-light-text;
 		}
 	}
 }

@@ -1,3 +1,8 @@
+@use "sass:color";
+@use "../buttons";
+@use "../typography";
+@use "../variables";
+
 input,
 textarea {
 	padding: 12px;
@@ -7,13 +12,13 @@ textarea {
 	background: #fff0 none repeat scroll left top;
 	font-family: inherit;
 	max-width: 100%;
-	color: $color-light-text;
+	color: variables.$color-light-text;
 	&:focus {
-		border-color: darken($input-border-color, 20%);
+		border-color: color.adjust(variables.$input-border-color, $lightness: -20%);
 	}
 
 	&.error {
-		border-color: $color-danger;
+		border-color: variables.$color-danger;
 	}
 }
 
@@ -32,7 +37,7 @@ textarea {
 	display: block;
 
 	label.error {
-		color: $color-danger;
+		color: variables.$color-danger;
 		font-size: 12px;
 		position: absolute;
 		bottom: -27px;
@@ -57,8 +62,8 @@ textarea {
 		label {
 			display: block;
 			margin-bottom: 8px;
-			color: $color-light-text;
-			@include font-style(13px, 13px, 12px);
+			color: variables.$color-light-text;
+			@include typography.font-style(13px, 13px, 12px);
 		}
 
 		.input-text {
@@ -67,13 +72,13 @@ textarea {
 	}
 
 	button[type='submit'] {
-		@include button;
-		@include button-primary;
+		@include buttons.button;
+		@include buttons.button-primary;
 		margin-top: 20px;
 	}
 
 	em {
-		@include font-style(12px, 12px, 12px);
+		@include typography.font-style(12px, 12px, 12px);
 	}
 }
 
@@ -89,7 +94,7 @@ fieldset {
 
 	legend {
 		margin-bottom: 10px;
-		@include font-style(18px, 16px, 15px);
+		@include typography.font-style(18px, 16px, 15px);
 	}
 }
 

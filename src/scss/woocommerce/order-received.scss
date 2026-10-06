@@ -1,11 +1,13 @@
+@use "../typography";
+
 .expo-order-received {
   text-align: center;
    .woocommerce-notice {
-     @include font-style(24px, 20px, 18px);
+     @include typography.font-style(24px, 20px, 18px);
      margin-bottom: 20px;
    }
 
   .woocommerce-order-overview__order {
-    @include font-style(18px, 16px, 15px);
+    @include typography.font-style(18px, 16px, 15px);
   }
 }

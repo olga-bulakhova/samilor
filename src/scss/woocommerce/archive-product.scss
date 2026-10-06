@@ -1,3 +1,5 @@
+@use "../variables";
+
 ul.products {
   position: relative;
   width: calc(100% + 40px);
@@ -6,15 +8,15 @@ ul.products {
   grid-template-columns: repeat(4, 1fr);
   row-gap: 45px;
 
-  @media (max-width: $xl) {
+  @media (max-width: variables.$xl) {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media (max-width: $lg) {
+  @media (max-width: variables.$lg) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: $sm) {
+  @media (max-width: variables.$sm) {
     grid-template-columns: 1fr;
   }
 }

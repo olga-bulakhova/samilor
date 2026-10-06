@@ -1,3 +1,5 @@
+@use "../variables";
+
 @mixin table {
   border-collapse: collapse;
   width: 100%;
@@ -5,7 +7,7 @@
 
  thead th {
    text-transform: uppercase;
-   color: $color-light-text;
+   color: variables.$color-light-text;
    font-size: 10px;
    letter-spacing: 1px;
    font-weight: 400;
@@ -23,7 +25,7 @@
 
 @mixin table-horizontal {
   td {
-    border-bottom: $border-gray;
+    border-bottom: variables.$border-gray;
   }
 
   tr:last-child td {
@@ -40,7 +42,7 @@
 
   tbody{
     td, th {
-      border-bottom: $border-gray;
+      border-bottom: variables.$border-gray;
     }
 
     tr:last-child {
