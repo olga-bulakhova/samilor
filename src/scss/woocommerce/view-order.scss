@@ -301,3 +301,35 @@
 		padding-inline: 20px;
 	}
 }
+
+.custom-customer-details-layout {
+	.addresses {
+		display: block; // Убираем двухколоночную сетку float/flex от WooCommerce
+		width: 100%;
+	}
+
+	.address-card {
+		h3 {
+			font-size: 18px;
+			color: $color-title;
+			margin-top: 0;
+			margin-bottom: 16px;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+
+		address {
+			font-style: normal;
+			color: $color-text;
+			line-height: 1.6;
+			font-size: 15px;
+
+			p {
+				margin: 10px 0 0 0;
+				display: flex;
+				align-items: center;
+				color: rgba($color-light-text, 0.7);
+			}
+		}
+	}
+}

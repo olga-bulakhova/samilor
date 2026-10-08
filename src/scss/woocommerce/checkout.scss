@@ -1,7 +1,15 @@
 @use '../variables' as *;
 @use '../buttons';
 
-/* Главный двухколоночный контейнер страницы оформления */
+@mixin custom-card-block {
+	@media (min-width: $sm) {
+		background-color: rgba($color-light-text, 0.02) !important;
+		border: $border-gray !important;
+		border-radius: $border-radius !important;
+		padding: 30px;
+	}
+}
+
 .custom-checkout-layout {
 	display: flex;
 	gap: 40px;
@@ -10,7 +18,6 @@
 	color: $color-text;
 
 	@media (max-width: $lg) {
-		// Ваш брейкпоинт 992px
 		flex-direction: column;
 		gap: 30px;
 	}
@@ -19,27 +26,24 @@
 		color: $color-title;
 		font-size: 20px;
 		font-weight: 600;
-		margin-top: 0;
-		margin-bottom: 24px;
+		margin: 0 0 24px 0;
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
 	}
 
-	/* ЛЕВАЯ КОЛОНКА (Данные) */
 	.checkout-billing-fields {
 		flex-grow: 1;
-		width: 50;
+		width: 50%;
 
 		@media (max-width: $lg) {
 			width: 100%;
 		}
 	}
 
-	/* ПРАВАЯ КОЛОНКА (Чек заказа) */
 	.checkout-order-review-sidebar {
 		width: 50%;
 		position: sticky;
-		top: 40px; // Фиксируется при скролле
+		top: 40px;
 
 		@media (max-width: $lg) {
 			width: 100%;
@@ -47,22 +51,17 @@
 		}
 	}
 
-	/* Обертки для карточек блоков */
+	/* Применение миксина карточек блоков */
 	.checkout-block-card,
 	.checkout-sticky-card {
-		@media (min-width: $sm) {
-			background-color: rgba($color-light-text, 0.02);
-			border: $border-gray; // Ваша рамка 1px solid #433e3e
-			border-radius: $border-radius; // Ваш радиус 24px
-			padding: 30px;
-		}
+		@include custom-card-block;
 	}
 
 	.checkout-sticky-card {
-		background-color: rgba($color-light-text, 0.03); // Слегка контрастнее
+		background-color: rgba($color-light-text, 0.03) !important;
 	}
 
-	/* СТИЛИЗАЦИЯ ФОРМ И ИНПУТОВ (Перевод в темный стиль) */
+	/* Применение миксина для инпутов основной формы */
 	.form-row {
 		margin-bottom: 20px;
 		display: flex;
@@ -73,18 +72,17 @@
 			font-size: 14px;
 			color: rgba($color-light-text, 0.6);
 			font-weight: 500;
-
 			.required {
-				color: $color-danger; // Ваша переменная #f58080 для обязательных полей
+				color: $color-danger;
 				text-decoration: none;
 			}
 		}
 
-		// Поля ввода текста, селекты и textarea
 		input.input-text,
 		textarea,
 		select {
 			width: 100%;
+			//	@include dark-input-field; // Оптимизация инпутов
 		}
 
 		textarea {
@@ -93,46 +91,39 @@
 		}
 	}
 
-	/* Переделка табличной части заказа справа */
+	/* ТАБЛИЦА ЗАКАЗА */
 	table.shop_table {
 		width: 100%;
 		border-collapse: collapse;
 		margin-bottom: 24px;
 
+		thead th {
+			display: none;
+		}
 		thead,
 		th,
 		td {
 			border: none;
 		}
 
-		thead th {
-			display: none; // Скрываем верхнюю ненужную плашку таблицы
-		}
-
-		// Строка товара
 		.cart_item {
 			border-bottom: $border-gray;
-
 			td {
 				padding: 16px 0;
-
 				&.product-name {
 					color: $color-text;
 					font-size: 15px;
 					line-height: 1.4;
-
 					strong.product-quantity {
 						color: rgba($color-light-text, 0.4);
 						font-weight: 400;
 						margin-left: 4px;
 					}
 				}
-
 				&.product-total {
 					text-align: right;
 					color: $color-title;
 					font-weight: 600;
-
 					span,
 					bdi {
 						color: inherit !important;
@@ -141,25 +132,21 @@
 			}
 		}
 
-		// Итоговые строки (Подытог, Доставка, Итого)
 		.cart-subtotal,
 		.shipping,
 		.order-total {
 			border-bottom: $border-gray;
-
 			th {
 				padding: 14px 0;
 				color: rgba($color-light-text, 0.5);
 				font-weight: 400;
 				text-align: left;
 			}
-
 			td {
 				padding: 14px 0;
 				text-align: right;
 				color: $color-title;
 				font-weight: 600;
-
 				span,
 				bdi {
 					color: inherit !important;
@@ -167,23 +154,21 @@
 			}
 		}
 
-		// Финальная жирная строка ИТОГО
 		.order-total {
 			border-bottom: none;
 			font-size: 18px;
-
 			th {
 				color: $color-title;
 				font-weight: 700;
 			}
 			td {
-				color: $color-links; // Подсвечиваем финальную сумму вашим оранжевым
+				color: $color-links;
 				font-weight: 700;
 			}
 		}
 	}
 
-	/* БЛОК КНОПКИ ОПЛАТЫ И ПЛАТЕЖНЫХ СИСТЕМ */
+	/* ПЛАТЕЖНЫЕ СИСТЕМЫ */
 	#payment {
 		background: transparent;
 		padding: 0;
@@ -201,12 +186,10 @@
 			li {
 				color: $color-text;
 				font-size: 14px;
-
 				input[type='radio'] {
 					margin-right: 8px;
-					accent-color: $color-links; // Красит радио-кнопку в ваш оранжевый
+					accent-color: $color-links;
 				}
-
 				.payment_box {
 					background-color: rgba($color-light-text, 0.04);
 					border-radius: 6px;
@@ -219,10 +202,10 @@
 			}
 		}
 
-		// Главная кнопка "Подтвердить заказ"
 		button#place_order {
 			@include buttons.button;
 			@include buttons.button-primary;
+			width: 100%;
 		}
 	}
 }
@@ -230,4 +213,174 @@
 .woocommerce-billing-fields,
 #ship-to-different-address {
 	display: none !important;
+}
+
+/* ФОРМА АВТОРИЗАЦИИ НА CHECKOUT */
+form.woocommerce-form-login.login {
+	max-width: 590px;
+	margin-bottom: 30px;
+	color: $color-text;
+	animation: fadeInCheckout 0.3s ease-in-out;
+	display: block;
+
+	// Применение миксина карточек
+	@include custom-card-block;
+
+	> p:first-of-type {
+		font-size: 14px;
+		line-height: 1.6;
+		color: rgba($color-light-text, 0.6);
+		margin: 0 0 24px 0;
+		border-bottom: $border-gray;
+		padding-bottom: 16px;
+	}
+
+	.form-row-first,
+	.form-row-last {
+		display: flex;
+		flex-direction: column;
+	}
+	label {
+		font-size: 14px;
+		color: rgba($color-light-text, 0.6);
+		font-weight: 500;
+		.required {
+			color: $color-danger;
+			text-decoration: none;
+		}
+	}
+
+	// Оптимизация инпута логина через миксин
+	input.input-text {
+		width: 100%;
+		//@include dark-input-field;
+	}
+
+	.password-input {
+		position: relative;
+		display: block;
+		width: 100%;
+		input.input-text {
+			padding-right: 50px;
+		}
+	}
+
+	.form-row:not(.form-row-first):not(.form-row-last) {
+		margin-top: 15px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 15px;
+		clear: both;
+
+		@media (max-width: $sm) {
+			flex-direction: column-reverse;
+			align-items: stretch;
+		}
+	}
+
+	.woocommerce-form-login__rememberme {
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		font-size: 14px;
+		color: rgba($color-light-text, 0.7);
+
+		input[type='checkbox'] {
+			margin-right: 8px;
+			accent-color: $color-links;
+		}
+	}
+
+	button.woocommerce-form-login__submit {
+		@include buttons.button;
+		@include buttons.button-primary;
+	}
+
+	.lost_password {
+		margin: 15px 20px 0 0;
+		clear: both;
+		a {
+			font-size: 13px;
+			color: rgba($color-light-text, 0.4);
+			text-decoration: none;
+			border-bottom: 1px dashed rgba($color-light-text, 0.3);
+			transition: all 0.2s ease;
+			&:hover {
+				color: $color-links;
+				border-bottom-color: $color-links;
+			}
+		}
+	}
+}
+
+.woocommerce-input-wrapper.password-input {
+	display: block;
+	width: 100% !important;
+	max-width: 100% !important;
+}
+
+/* ПЛAШКА УВЕДОМЛЕНИЯ ДЛЯ ВХОДА (LOGIN TOGGLE) */
+.woocommerce-form-login-toggle {
+	margin-bottom: 20px;
+	width: 100%;
+
+	.woocommerce-info {
+		color: $color-text !important;
+		font-size: 15px;
+		font-weight: 500;
+		line-height: 1.4;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		position: relative;
+		box-shadow: none;
+
+		@include custom-card-block;
+
+		// Оптимизация: перебиваем паддинг миксина (30px) на более компактный для плашек
+		@media (min-width: $sm) {
+			padding: 16px 24px !important;
+		}
+
+		@media (max-width: $sm) {
+			flex-direction: column;
+			gap: 2px;
+		}
+
+		&::before {
+			content: '🔑';
+			font-size: 16px;
+			display: inline-block;
+			line-height: 1;
+			@media (max-width: $sm) {
+				content: none;
+			}
+		}
+
+		a.showlogin {
+			color: $color-links !important;
+			text-decoration: none;
+			font-weight: 600;
+			border-bottom: 1px dashed rgba($color-links, 0.4);
+			transition: all 0.2s ease-in-out;
+
+			&:hover {
+				color: $color-light-text !important;
+				border-bottom-color: $color-light-text;
+			}
+		}
+	}
+}
+
+@keyframes fadeInCheckout {
+	from {
+		opacity: 0;
+		transform: translateY(-5px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }

@@ -8,8 +8,8 @@ textarea {
 	padding: 12px;
 	border-radius: 20px;
 	outline: none !important;
-	border: 1px solid variables.$color-text;
-	background: #fff0 none repeat scroll left top;
+	border: 1px solid rgba(variables.$color-light-text, 0.15);
+	background-color: rgba(variables.$color-light-text, 0.04);
 	font-family: inherit;
 	max-width: 100%;
 	color: variables.$color-text;
@@ -152,4 +152,10 @@ input[type='number'].qty {
 			outline: none;
 		}
 	}
+}
+
+input[type='checkbox'] {
+	width: 16px;
+	height: 16px;
+	accent-color: variables.$color-links; // Красит чекбокс в ваш оранжевый #ff8562
 }
