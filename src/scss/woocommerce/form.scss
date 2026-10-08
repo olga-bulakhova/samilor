@@ -1,18 +1,18 @@
-@use "sass:color";
-@use "../buttons";
-@use "../typography";
-@use "../variables";
+@use 'sass:color';
+@use '../buttons';
+@use '../typography';
+@use '../variables';
 
 input,
 textarea {
 	padding: 12px;
 	border-radius: 20px;
 	outline: none !important;
-	border: 1px solid #fff;
+	border: 1px solid variables.$color-text;
 	background: #fff0 none repeat scroll left top;
 	font-family: inherit;
 	max-width: 100%;
-	color: variables.$color-light-text;
+	color: variables.$color-text;
 	&:focus {
 		border-color: color.adjust(variables.$input-border-color, $lightness: -20%);
 	}
@@ -21,16 +21,6 @@ textarea {
 		border-color: variables.$color-danger;
 	}
 }
-
-// input[type='number']::-webkit-inner-spin-button,
-// input[type='number']::-webkit-outer-spin-button {
-// 	// filter: invert(1); превратит стандартные черные стрелки в чисто белые
-// 	filter: invert(1) brightness(1.5);
-
-// 	// Дополнительно можно немного увеличить их прозрачность или отступы
-// 	opacity: 0.8;
-// 	cursor: pointer;
-// }
 
 .woocommerce-input-wrapper {
 	position: relative;
@@ -62,7 +52,7 @@ textarea {
 		label {
 			display: block;
 			margin-bottom: 8px;
-			color: variables.$color-light-text;
+			color: variables.$color-title;
 			@include typography.font-style(13px, 13px, 12px);
 		}
 

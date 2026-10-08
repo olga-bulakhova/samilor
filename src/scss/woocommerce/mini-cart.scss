@@ -1,4 +1,4 @@
-@use "../variables";
+@use '../variables';
 
 .expo-mini-cart {
 	width: 400px;
@@ -29,8 +29,24 @@
 
 	table.woocommerce-mini-cart {
 		width: 100%;
-		color: variables.$color-light-text;
+		color: variables.$color-text;
 		border-collapse: collapse;
+
+		.product-img-td {
+			a {
+				display: block;
+				width: 100%;
+				aspect-ratio: 1/1;
+				overflow: hidden;
+				border-radius: 10px;
+			}
+
+			img {
+				width: 100% !important;
+				height: 100% !important;
+				object-fit: cover;
+			}
+		}
 
 		td {
 			padding: 3px 5px;
@@ -61,10 +77,10 @@
 			text-align: right;
 
 			a {
-				color: variables.$color-light-text;
+				color: variables.$color-text;
 
 				&:hover {
-					color: variables.$color-dark-text;
+					color: variables.$color-title;
 				}
 			}
 		}
@@ -78,7 +94,7 @@
 	.woocommerce-mini-cart__total {
 		margin-top: 15px;
 		text-align: right;
-		color: variables.$color-light-text;
+		color: variables.$color-title;
 
 		strong {
 			font-weight: 600;

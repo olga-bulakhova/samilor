@@ -1,4 +1,4 @@
-@use "variables";
+@use 'variables';
 
 .expo-header {
 	position: fixed;
@@ -16,7 +16,7 @@
 
 	a,
 	span {
-		color: variables.$color-light-text;
+		color: variables.$color-text;
 		cursor: pointer;
 	}
 
@@ -46,7 +46,7 @@
 				&:hover {
 					> a,
 					> span {
-						color: variables.$color-dark-text;
+						color: variables.$color-title;
 					}
 				}
 			}
@@ -99,8 +99,8 @@
 
 			a {
 				&:hover {
-					color: variables.$color-dark-text;
-					border-bottom: 1px solid variables.$color-dark-text;
+					color: variables.$color-title;
+					border-bottom: 1px solid variables.$color-title;
 				}
 			}
 		}

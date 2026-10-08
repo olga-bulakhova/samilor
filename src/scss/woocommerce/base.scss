@@ -1,8 +1,8 @@
-@use "../variables";
+@use '../variables';
 
 /* Перекрашиваем текстовые элементы WooCommerce */
 .woocommerce {
-	color: #ffffff;
+	color: variables.$color-text;
 
 	// Названия товаров в каталоге и на странице товара
 	ul.products li.product .woocommerce-loop-product__title,
@@ -12,7 +12,7 @@
 
 	Цены в каталоге и внутри карточки ul.products li.product .price,
 	div.product .price {
-		color: variables.$color-light-text;
+		color: variables.$color-title;
 		font-weight: 600;
 	}
 

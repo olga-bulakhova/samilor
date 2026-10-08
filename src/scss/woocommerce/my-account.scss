@@ -1,0 +1,134 @@
+@use '../variables' as *;
+
+.custom-my-account-layout {
+	display: flex;
+	gap: 40px;
+	margin: 40px 0;
+	color: $color-text; // Используем ваш основной цвет текста
+
+	@media (max-width: $md) {
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	/* Блок профиля в меню */
+	// .user-profile-preview {
+	// 	display: flex;
+	// 	align-items: center;
+	// 	gap: 15px;
+	// 	padding-bottom: 20px;
+	// 	margin-bottom: 20px;
+	// 	border-bottom: $border-card;
+
+	// 	img {
+	// 		border-radius: 50%;
+	// 		border: 2px solid $color-light-text; // Белый контур аватарки
+	// 	}
+
+	// 	.user-name {
+	// 		display: block;
+	// 		font-weight: 600;
+	// 		font-size: 16px;
+	// 		color: $color-title; // Чисто белый цвет заголовка
+	// 	}
+
+	// 	.user-role {
+	// 		font-size: 12px;
+	// 		color: rgba($color-light-text, 0.4); // Зависит от белого цвета
+	// 	}
+	// }
+
+	/* Навигационное меню */
+	.woocommerce-MyAccount-navigation ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+
+		li {
+			a {
+				display: block;
+				padding: 10px 14px;
+				color: rgba($color-light-text, 0.7);
+				text-decoration: none;
+				border-radius: calc($border-radius / 3); // Пропорциональный радиус для кнопок меню
+				font-size: 15px;
+				transition: all 0.2s ease;
+
+				&:hover {
+					background-color: rgba($color-light-text, 0.05);
+					color: $color-light-text;
+					padding-left: 18px;
+				}
+			}
+
+			/* Стиль для активной вкладки */
+			&.is-active a {
+				background-color: $background-color-primary-button; // Белый фон кнопки
+				color: $color-primary-button; // Черный текст внутри кнопки
+				font-weight: 600;
+			}
+		}
+	}
+
+	/* Блок основного контента */
+	.my-account-content {
+		flex-grow: 1;
+		max-width: 1000px;
+		margin-inline: auto;
+		background-color: rgba($color-light-text, 0.02);
+		border: $border-card;
+		border-radius: $border-radius; // Ваш радиус 24px
+		padding: 30px;
+
+		h2 {
+			color: $color-title;
+			margin-top: 0;
+			margin-bottom: 15px;
+		}
+	}
+}
+
+/* Карточки быстрого доступа на главном экране ЛК */
+.dashboard-quick-links {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 20px;
+	margin-top: 30px;
+
+	.quick-link-card {
+		background-color: $background-card;
+		border: $border-card;
+		border-radius: $border-radius; // Скругление карточек 24px
+		padding: 20px;
+		text-align: center;
+		text-decoration: none;
+		transition: all 0.2s ease;
+
+		.card-icon {
+			font-size: 32px;
+			display: block;
+			margin-bottom: 10px;
+		}
+
+		h3 {
+			font-size: 18px;
+			color: $color-title;
+			margin: 0 0 8px 0;
+		}
+
+		p {
+			font-size: 13px;
+			color: rgba($color-light-text, 0.5);
+			margin: 0;
+		}
+
+		&:hover {
+			border-color: $color-light-text; // При наведении рамка карточки становится ярко-белой
+			transform: translateY(-3px);
+			background-color: rgba($color-light-text, 0.05);
+		}
+	}
+}

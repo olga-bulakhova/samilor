@@ -1,8 +1,8 @@
-@use "variables";
+@use 'variables';
 
 .home__heading {
 	padding-top: 50px;
-	color: variables.$color-light-text;
+	color: variables.$color-text;
 
 	@media (max-width: variables.$md) {
 		padding-top: 28px;

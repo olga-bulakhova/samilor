@@ -1,3 +1,5 @@
+@use '../variables';
+
 table.variations {
 	width: 100%;
 	border-collapse: collapse;
@@ -53,10 +55,6 @@ table.variations {
 		flex-wrap: wrap;
 		column-gap: 15px;
 		position: relative;
-
-		// .xt_woovs-hidden {
-		// 	display: none !important;
-		// }
 	}
 
 	ul.xt_woovs-swatches {
@@ -77,11 +75,21 @@ table.variations {
 			border: 2px solid rgba(255, 255, 255, 0.15) !important;
 			border-radius: 6px !important;
 			background: transparent !important;
+			color: variables.$color-text !important;
+
 			cursor: pointer;
 			transition:
 				transform 0.2s ease,
 				border-color 0.2s ease,
 				box-shadow 0.2s ease;
+
+			.swatch-label {
+				color: variables.$color-text;
+
+				&:hover {
+					color: variables.$color-text;
+				}
+			}
 
 			.swatch-image-inner {
 				display: block;
@@ -105,6 +113,7 @@ table.variations {
 			&.xt_woovs-selected {
 				border-color: #ffffff !important;
 				box-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
+				font-weight: 600;
 			}
 		}
 	}

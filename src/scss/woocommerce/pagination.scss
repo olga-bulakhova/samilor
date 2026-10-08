@@ -1,5 +1,5 @@
-@use "../margins";
-@use "../variables";
+@use '../margins';
+@use '../variables';
 
 .woocommerce-pagination {
 	@include margins.mt(80px, 64px, 55px);
@@ -24,16 +24,16 @@
 		}
 
 		a {
-			color: variables.$color-dark-text;
+			color: variables.$color-text;
 			&:hover:not(.next):not(.prev) {
-				border-bottom: 1px solid variables.$color-dark-text;
+				border-bottom: 1px solid variables.$color-text;
 			}
 		}
 
 		a.next,
 		a.prev {
 			font-size: 20px;
-			color: variables.$color-light-text;
+			color: variables.$color-text;
 		}
 	}
 }

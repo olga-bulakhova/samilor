@@ -1,5 +1,5 @@
-@use "typography";
-@use "variables";
+@use 'typography';
+@use 'variables';
 
 @mixin button {
 	display: inline-block;
@@ -55,18 +55,14 @@
 
 @mixin button-secondary {
 	background-color: variables.$background-page;
-	color: variables.$color-light-text;
+	color: variables.$color-title;
 	@include typography.font-style(16px, 15px, 14px);
 	font-weight: 700;
 	letter-spacing: 0.05rem;
 	padding: 20px 35px;
 	transition: all 0.2s;
 	border-radius: 30px;
-	border: 1px solid variables.$color-light-text;
-
-	// &.btn-border {
-	// 	border: 1px solid $color-secondary-button;
-	// }
+	border: 1px solid variables.$color-title;
 
 	&.btn-sm {
 		@include typography.font-style(13px, 13px, 12px);

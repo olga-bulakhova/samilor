@@ -1,4 +1,4 @@
-@use "../variables";
+@use '../variables';
 
 .aws-container {
 	width: 350px;
@@ -6,8 +6,9 @@
 }
 
 .aws-search-result .aws_result_title,
-.aws-search-result .aws_search_more a {
-	color: variables.$color-dark-text;
+.aws-search-result .aws_search_more a,
+.aws-search-result .aws_results .aws_result_item {
+	color: #000;
 	font-weight: 600;
 }
 

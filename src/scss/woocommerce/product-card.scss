@@ -1,5 +1,5 @@
-@use "../typography";
-@use "../variables";
+@use '../typography';
+@use '../variables';
 
 .expo-product-card {
 	padding: 0 20px;
@@ -63,9 +63,11 @@
 		h4 {
 			@include typography.font-style(14px, 14px, 14px);
 			font-weight: 600;
+			color: variables.$color-title;
+			text-transform: none;
 
 			a {
-				color: variables.$color-dark-text;
+				color: variables.$color-title;
 			}
 		}
 	}

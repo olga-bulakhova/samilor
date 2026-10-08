@@ -1,5 +1,5 @@
-@use "typography";
-@use "variables";
+@use 'typography';
+@use 'variables';
 
 * {
 	margin: 0;
@@ -98,10 +98,10 @@ strong {
 @mixin link-bold-hover-bolder {
 	@include typography.font-style(14px, 14px, 14px);
 	font-weight: 600;
-	color: variables.$color-dark-text;
+	color: variables.$color-text;
 
 	&:hover {
-		border-bottom: 1px solid variables.$color-dark-text;
+		border-bottom: 1px solid variables.$color-title;
 	}
 }
 
@@ -128,17 +128,19 @@ strong {
 }
 
 .border-bottom-black {
-	border-bottom: variables.$border-black;
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 .expo-subtitle {
 	@include typography.font-style(22px, 22px, 18px);
 	font-weight: 500;
-	color: variables.$color-light-text;
+	color: variables.$color-text;
 }
 
 .light-text {
-	color: variables.$color-light-text;
+	color: variables.$color-text;
 }
 
 .text-underline {
@@ -151,4 +153,12 @@ strong {
 
 .button.text-transparent {
 	color: transparent !important;
+}
+
+.color-text {
+	color: variables.$color-text;
+}
+
+.color-title {
+	color: variables.$color-title;
 }

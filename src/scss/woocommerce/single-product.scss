@@ -1,8 +1,8 @@
-@use "../main";
-@use "../margins";
-@use "../typography";
-@use "../variables";
-@use "form";
+@use '../main';
+@use '../margins';
+@use '../typography';
+@use '../variables';
+@use 'form';
 
 .expo-product-wrapper {
 	display: flex;
@@ -188,6 +188,6 @@
 	}
 }
 
-.woocommerce-variation.single_variation {
-	margin-bottom: 30px;
-}
+// .woocommerce-variation.single_variation {
+// 	margin-bottom: 30px;
+// }
