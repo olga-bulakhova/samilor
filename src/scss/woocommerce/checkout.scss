@@ -64,16 +64,6 @@
 		flex-direction: column;
 		gap: 8px;
 
-		label {
-			font-size: 14px;
-			color: rgba($color-light-text, 0.6);
-			font-weight: 500;
-			.required {
-				color: $color-danger;
-				text-decoration: none;
-			}
-		}
-
 		input.input-text,
 		textarea,
 		select {
@@ -206,15 +196,10 @@
 	}
 }
 
-.woocommerce-billing-fields,
-#ship-to-different-address {
-	display: none !important;
-}
-
 /* ФОРМА АВТОРИЗАЦИИ НА CHECKOUT */
 form.woocommerce-form-login.login {
-	max-width: 590px;
-	margin-bottom: 30px;
+	//	max-width: 590px;
+	//margin-bottom: 30px;
 	color: $color-text;
 	animation: fadeInCheckout 0.3s ease-in-out;
 	display: block;
@@ -224,26 +209,14 @@ form.woocommerce-form-login.login {
 
 	> p:first-of-type {
 		font-size: 14px;
-		line-height: 1.6;
+
 		color: rgba($color-light-text, 0.6);
-		margin: 0 0 24px 0;
-		border-bottom: $border-gray;
-		padding-bottom: 16px;
 	}
 
 	.form-row-first,
 	.form-row-last {
 		display: flex;
 		flex-direction: column;
-	}
-	label {
-		font-size: 14px;
-		color: rgba($color-light-text, 0.6);
-		font-weight: 500;
-		.required {
-			color: $color-danger;
-			text-decoration: none;
-		}
 	}
 
 	// Оптимизация инпута логина через миксин
@@ -262,18 +235,11 @@ form.woocommerce-form-login.login {
 	}
 
 	.form-row:not(.form-row-first):not(.form-row-last) {
-		margin-top: 15px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		flex-wrap: wrap;
-		gap: 15px;
 		clear: both;
-
-		@media (max-width: $sm) {
-			flex-direction: column-reverse;
-			align-items: stretch;
-		}
 	}
 
 	.woocommerce-form-login__rememberme {
@@ -296,7 +262,12 @@ form.woocommerce-form-login.login {
 
 	.lost_password {
 		margin: 15px 20px 0 0;
-		clear: both;
+		@media (max-width: $sm) {
+			position: static;
+			margin: 30px 0 0;
+			text-align: right;
+		}
+
 		a {
 			font-size: 13px;
 			color: rgba($color-light-text, 0.4);
@@ -471,3 +442,11 @@ form.woocommerce-checkout {
 		transform: translateX(0) scale(1);
 	}
 }
+.woocommerce-billing-fields,
+.woocommerce-shipping-fields {
+	h3 {
+		display: none;
+	}
+}
+
+

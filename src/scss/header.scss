@@ -6,12 +6,23 @@
 	top: 0;
 	width: 100%;
 	background-color: variables.$background-page;
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 	font-weight: 600;
 	border-bottom: variables.$border-gray;
 
 	@media (max-width: variables.$sm) {
 		font-size: 13px;
+	}
+
+	.logo {
+		font-size: 20px;
+		font-weight: 800;
+		.logo-first {
+			color: variables.$color-title;
+		}
+		.logo-second {
+			color: variables.$color-links;
+		}
 	}
 
 	a,
@@ -37,7 +48,7 @@
 		height: 100%;
 
 		&.header-menu-left {
-			column-gap: 30px;
+			column-gap: 50px;
 
 			@media (max-width: variables.$sm) {
 				column-gap: 20px;
@@ -54,7 +65,7 @@
 
 		&.header-menu-left {
 			li {
-				margin-top: 6px;
+				margin-top: 4px;
 			}
 		}
 
@@ -81,29 +92,29 @@
 			padding: 15px 0;
 		}
 
-		.sub-menu {
-			visibility: hidden;
-			display: flex;
-			position: fixed;
-			top: 50px;
-			left: 0;
-			right: 0;
-			background-color: variables.$background-page;
-			justify-content: center;
-			flex-wrap: wrap;
-			padding: 30px 10%;
-			column-gap: 30px;
-			row-gap: 10px;
-			border-top: variables.$border-gray;
-			box-shadow: 0 13px 23px rgba(0, 0, 0, 0.11);
+		// .sub-menu {
+		// 	visibility: hidden;
+		// 	display: flex;
+		// 	position: fixed;
+		// 	top: 50px;
+		// 	left: 0;
+		// 	right: 0;
+		// 	background-color: variables.$background-page;
+		// 	justify-content: center;
+		// 	flex-wrap: wrap;
+		// 	padding: 30px 10%;
+		// 	column-gap: 30px;
+		// 	row-gap: 10px;
+		// 	border-top: variables.$border-gray;
+		// 	box-shadow: 0 13px 23px rgba(0, 0, 0, 0.11);
 
-			a {
-				&:hover {
-					color: variables.$color-title;
-					border-bottom: 1px solid variables.$color-title;
-				}
-			}
-		}
+		// 	a {
+		// 		&:hover {
+		// 			color: variables.$color-title;
+		// 			border-bottom: 1px solid variables.$color-title;
+		// 		}
+		// 	}
+		// }
 	}
 
 	.header-actions {
@@ -154,4 +165,82 @@
 			display: none;
 		}
 	}
+}
+
+.sub-menu {
+	visibility: hidden;
+	opacity: 0; // Начинаем с полной прозрачности для плавной анимации
+	display: flex;
+	position: fixed;
+	top: 60px; // Слегка увеличили отступ сверху, чтобы дать меню "дышать" (подстройте под высоту шапки)
+	left: 0;
+	right: 0;
+	background-color: rgba(variables.$background-page, 0.92); // Делаем фон слегка прозрачным для эффекта стекла
+	backdrop-filter: blur(12px); // Трендовое размытие заднего плана (Blur effect)
+	-webkit-backdrop-filter: blur(12px);
+
+	justify-content: center;
+	flex-wrap: wrap;
+	padding: 14px 10% 20px;
+	column-gap: 40px; // Немного увеличили расстояние между колонками ссылок
+	row-gap: 14px;
+
+	border-top: variables.$border-gray; // Ваша серая линия 1px solid #433e3e
+	border-bottom: variables.$border-gray; // Добавляем тонкую рамку и снизу для аккуратности
+	border-radius: 0 0 variables.$border-radius variables.$border-radius; // Скругление 24px ТОЛЬКО снизу!
+
+	// Плотная, объемная и мягкая темная тень, чтобы меню визуально парило над контентом
+	box-shadow:
+		0 20px 40px rgba(0, 0, 0, 0.5),
+		0 1px 0 rgba(255, 255, 255, 0.05) inset;
+
+	// Плавный переход для всех состояний (включая появление при ховере на родительский li)
+	transition:
+		opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+		visibility 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+		transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	transform: translateY(-10px); // Небольшой сдвиг вверх в закрытом состоянии
+
+	/* Элемент ссылки */
+	a {
+		color: variables.$color-text; // Используем ваш основной цвет текста (80% белый)
+		font-size: 15px;
+		font-weight: 500;
+		text-decoration: none;
+		position: relative;
+		padding: 4px 0;
+		transition: color 0.2s ease;
+
+		// Создаем скрытую умную полосу подчеркивания
+		&::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 2px; // Толщина линии подчеркивания
+			background-color: variables.$color-links; // Красим в ваш фирменный оранжевый #ff8562 (или $color-title)
+			transform: scaleX(0); // По умолчанию сжимаем в 0
+			transform-origin: right center; // Анимация будет уходить вправо
+			transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+		}
+
+		&:hover {
+			color: variables.$color-title; // Текст становится чисто белым
+
+			&::after {
+				transform: scaleX(1); // Разворачиваем полосу на полную ширину
+				transform-origin: left center; // Эффект вылета слева направо
+			}
+		}
+	}
+}
+
+/* 💡 ДЛЯ РАБОТЫ АНИМАЦИИ: 
+   В месте, где вы через ховер родительского элемента показываете подменю, 
+   добавьте переключение opacity и сброс transform: */
+li:hover .sub-menu {
+	visibility: visible;
+	opacity: 1;
+	transform: translateY(0); // Меню плавно опускается на свое место при открытии
 }

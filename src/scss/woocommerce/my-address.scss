@@ -1,0 +1,112 @@
+@use '../variables' as *;
+@use '../buttons';
+
+.custom-addresses-section {
+	color: $color-text;
+
+	.addresses-section-header {
+		h2 {
+			color: $color-title;
+			margin: 0 0 8px 0;
+		}
+		p.description {
+			font-size: 14px;
+			color: rgba($color-light-text, 0.5);
+			line-height: 1.5;
+			margin: 0;
+		}
+	}
+
+	/* Сетка карточек адресов */
+	.addresses-cards-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr); // 2 колонки на ПК
+		gap: 24px;
+		margin-top: 30px;
+
+		@media (max-width: $sm) {
+			// На мобильных (576px) перестраиваем в 1 колонку
+			grid-template-columns: 1fr;
+			gap: 16px;
+		}
+	}
+
+	/* Карточка адреса */
+	.address-card-item {
+		background-color: rgba($color-light-text, 0.02);
+		border: $border-gray; // Ваша серая рамка 1px solid #433e3e
+		border-radius: $border-radius; // Ваш радиус 24px
+		overflow: hidden;
+		transition:
+			border-color 0.3s ease,
+			transform 0.3s ease;
+
+		&:hover {
+			border-color: rgba($color-light-text, 0.4);
+			transform: translateY(-2px); // Приподнимание при наведении
+		}
+
+		.address-card-inner {
+			padding: 24px;
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+			min-height: 220px; // Базовая высота, чтобы блоки были ровными
+		}
+
+		/* Шапка карточки */
+		.address-card-header {
+			border-bottom: $border-gray;
+			padding-bottom: 12px;
+			margin-bottom: 16px;
+
+			h3 {
+				font-size: 15px;
+				font-weight: 600;
+				color: $color-title;
+				margin: 0;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+			}
+		}
+
+		/* Тело карточки */
+		.address-card-body {
+			flex-grow: 1; // Растягивает блок, выравнивая нижние кнопки в одну линию
+
+			address {
+				font-style: normal;
+				color: $color-text;
+				line-height: 1.6;
+				font-size: 15px;
+				white-space: pre-line;
+			}
+		}
+
+		/* Подвал карточки с кнопкой изменения */
+		.address-card-footer {
+			margin-top: 20px;
+			display: flex;
+			justify-content: flex-end;
+
+			.address-edit-btn {
+				@include buttons.button;
+				@include buttons.button-primary; // Ваша белая контрастная кнопка
+				padding: 0 24px;
+				height: 38px;
+				font-size: 13px;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+				text-decoration: none;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+	}
+
+	/* Если вы скрыли платежный адрес на чекауте, 
+     вы можете полностью спрятать его карточку и отсюда, раскомментировав эту строку: */
+	// .account-address-billing { display: none !important; }
+}
+//asa453HHHH

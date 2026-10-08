@@ -1,8 +1,8 @@
-@use "typography";
-@use "variables";
+@use 'typography';
+@use 'variables';
 
 .expo-footer {
-	background-color: variables.$background-color-footer;
+	background-color: variables.$background-page;
 	padding: 36px 0 45px;
 	border-top: variables.$border-gray;
 

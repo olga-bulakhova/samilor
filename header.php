@@ -45,6 +45,8 @@
 
                             <li id="menu-item-1290" class="menu-item menu-item-phone menu-item-type-custom menu-item-object-custom menu-item-1290">
 
+                                <a href="/" class="logo"><span class="logo-first">SAMI</span><span class="logo-second">LOR</span></a>
+                                <!-- 
                                 <?php $expo_theme_info = expo_theme_info(); ?>
 
                                 <?php if (!empty($expo_theme_info['phone_1'])): ?>
@@ -57,15 +59,15 @@
                                     <div> <a href="tel:+<?php echo str_replace(array(' ', '-', '+'), array('', '', ''), $expo_theme_info['phone_2']) ?>">
                                             <?php echo $expo_theme_info['phone_2'] ?>
                                     </div> </a>
-                                <?php endif; ?>
+                                <?php endif; ?> -->
 
 
                             </li>
 
 
-                            <li id="menu-item-144" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-144"><span>КАТАЛОГ</span>
+                            <li class="menu-item menu-item-link menu-item-has-children "><span>КАТАЛОГ</span>
                                 <ul class="sub-menu">
-                                    <li id="menu-item-1291" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1291"><a href="/shop/">Все товары</a></li>
+                                    <li id="menu-item-1291" class="menu-item  menu-item-1291"><a href="/shop/">Все товары</a></li>
 
                                     <?php wp_list_categories(array('taxonomy' => 'product_cat', 'title_li' => '')); ?>
                                 </ul>
