@@ -57,10 +57,6 @@
 		@include custom-card-block;
 	}
 
-	.checkout-sticky-card {
-		background-color: rgba($color-light-text, 0.03) !important;
-	}
-
 	/* Применение миксина для инпутов основной формы */
 	.form-row {
 		margin-bottom: 20px;
@@ -337,9 +333,6 @@ form.woocommerce-form-login.login {
 		position: relative;
 		box-shadow: none;
 
-		@include custom-card-block;
-
-		// Оптимизация: перебиваем паддинг миксина (30px) на более компактный для плашек
 		@media (min-width: $sm) {
 			padding: 16px 24px !important;
 		}
@@ -382,5 +375,99 @@ form.woocommerce-form-login.login {
 	to {
 		opacity: 1;
 		transform: translateY(0);
+	}
+}
+
+/* ==========================================================================
+   СТИЛИЗАЦИЯ ОВЕРЛЕЯ БЛОКИРОВКИ ПРИ ОТПРАВКЕ ЧЕКАУТА
+   ========================================================================== */
+
+// Фиксируем контекст для формы чекаута
+form.woocommerce-checkout {
+	/* Фоновый полупрозрачный слой */
+	.blockUI.blockOverlay {
+		background-color: $background-page !important; // Используем ваш темно-коричневый фон #271e15
+		opacity: 0.75 !important; // Оптимальная плотность, чтобы форма была слегка видна
+		backdrop-filter: blur(5px); // Современный эффект размытия полей на заднем плане
+		border-radius: $border-radius; // Скругляем края оверлея по форме карточек (24px)
+		opacity: 0 !important;
+	}
+}
+
+/* ==========================================================================
+   ФИКСИРОВАННЫЕ УВЕДОМЛЕНИЯ ОБ ОШИБКАХ В НИЖНЕМ ПРАВОМ УГЛУ
+   ========================================================================== */
+
+// Сбрасываем стандартное поведение контейнера на странице чекаута
+.woocommerce-NoticeGroup-checkout {
+	position: fixed;
+	bottom: 30px; // Отступ от нижнего края экрана
+	right: 30px; // Отступ от правого края экрана
+	z-index: 999999; // Выводим поверх абсолютно всех элементов сайта и оверлеев
+	max-width: 400px; // Ограничиваем ширину, чтобы уведомление выглядело как аккуратный виджет
+	width: calc(100% - 60px); // Защита для мобильных экранов
+	animation: slideInNotification 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+
+	@media (max-width: $sm) {
+		bottom: 20px;
+		right: 20px;
+		width: calc(100% - 40px);
+		max-width: 100%;
+	}
+
+	/* Стилизация самого блока с ошибками */
+	ul.woocommerce-error {
+		list-style: none;
+		padding: 12px 16px !important;
+		margin: 0 !important;
+		background-color: #1c150f !important; // Темная подложка, чуть темнее вашего основного фона #271e15
+		border: 1px solid rgba($color-danger, 0.4) !important; // Ваша красная рамка #f58080
+		border-radius: 16px !important; // Аккуратное скругление углов карточки уведомления
+		box-shadow:
+			0 10px 30px rgba(0, 0, 0, 0.5),
+			0 0 15px rgba($color-danger, 0.1) !important; // Плотная тень + легкое красное свечение
+		color: $color-title !important;
+		font-size: 14px;
+
+		li {
+			position: relative;
+			line-height: 1.5;
+			color: rgba($color-light-text, 0.9) !important;
+
+			&:not(:last-child) {
+				margin-bottom: 12px;
+				padding-bottom: 12px;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.05); // Разделитель, если ошибок несколько в одном уведомлении
+			}
+
+			&::before {
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 1px;
+				font-size: 15px;
+			}
+
+			a {
+				color: $color-links !important; // Ваша оранжевая переменная
+				text-decoration: underline;
+
+				&:hover {
+					color: $color-light-text !important;
+				}
+			}
+		}
+	}
+}
+
+/* Эффект плавного вылета уведомления справа налево с легким пружинящим эффектом */
+@keyframes slideInNotification {
+	from {
+		opacity: 0;
+		transform: translateX(50px) scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0) scale(1);
 	}
 }

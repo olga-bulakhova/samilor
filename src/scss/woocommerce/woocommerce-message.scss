@@ -1,0 +1,144 @@
+@use '../variables' as *;
+
+/* ==========================================================================
+   УНИВЕРСАЛЬНАЯ СИСТЕМА ФИКСИРОВАННЫХ УВЕДОМЛЕНИЙ (ОШИБКИ, УСПЕХ, ИНФО)
+   ========================================================================== */
+
+// Перечисляем контейнеры-обертки, которые WooCommerce использует на разных страницах
+.woocommerce-NoticeGroup-checkout,
+.woocommerce-notices-wrapper,
+.woocommerce-NoticeGroup {
+	position: fixed;
+	bottom: 30px; // Отступ от нижнего края экрана
+	right: 30px; // Отступ от правого края экрана
+	z-index: 9999999 !important; // Максимальный приоритет поверх всех оверлеев
+	max-width: 420px; // Аккуратная ширина виджета
+	width: calc(100% - 60px); // Безопасная зона для мобильных
+	display: flex;
+	flex-direction: column;
+	gap: 12px; // Расстояние между уведомлениями, если их вылетело несколько
+	animation: slideInUniversalNotification 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+
+	@media (max-width: $sm) {
+		// Ваш брейкпоинт 576px
+		bottom: 20px;
+		right: 20px;
+		width: calc(100% - 40px);
+		max-width: 100%;
+	}
+
+	/* БАЗОВЫЙ ОБЩИЙ СТИЛЬ ДЛЯ ВСЕХ ТИПОВ ПЛАШЕК */
+	ul.woocommerce-error,
+	.woocommerce-message,
+	.woocommerce-info {
+		list-style: none !important;
+		margin: 0 !important;
+		padding: 14px 14px 14px 54px !important; // Плотный отступ слева (54px) под кастомные иконки
+		background-color: #1c150f !important; // Единый глубокий темный фон карточек (чуть темнее #271e15)
+		border-radius: 16px !important; // Единое скругление углов
+		color: $color-title !important; // Чисто белый текст
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 1.5;
+		position: relative;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important; // Плотная тень отбрасываемая на контент сайта
+
+		// Очистка внутренних списков ошибок
+		li {
+			padding: 0 !important;
+			margin: 0 !important;
+			list-style: none !important;
+			color: rgba($color-light-text, 0.9) !important;
+
+			&:not(:last-child) {
+				margin-bottom: 10px;
+				padding-bottom: 10px;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+			}
+		}
+
+		// Ссылки внутри уведомлений (например, "Просмотр корзины")
+		a {
+			color: $color-links !important; // Ваша оранжевая переменная #ff8562
+			text-decoration: underline;
+			font-weight: 600;
+			transition: color 0.2s ease;
+
+			&:hover {
+				color: $color-light-text !important;
+			}
+		}
+
+		// Базовая позиция для всех иконок-псевдоэлементов
+		&::before {
+			position: absolute;
+			left: 20px;
+			top: 50%;
+			transform: translateY(-50%);
+			font-size: 16px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
+	/* ТИП 1: КАРТОЧКА ОШИБКИ (Красная рамка + иконка) */
+	ul.woocommerce-error {
+		border: 1px solid rgba($color-danger, 0.4) !important; // Ваша переменная #f58080
+		box-shadow:
+			0 10px 30px rgba(0, 0, 0, 0.5),
+			0 0 15px rgba($color-danger, 0.1) !important;
+
+		&::before {
+			content: '⚠️';
+		}
+	}
+
+	/* ТИП 2: КАРТОЧКА УСПЕХА (Зеленая рамка + круглая галочка) */
+	.woocommerce-message {
+		border: 1px solid rgba(129, 199, 132, 0.4) !important; // Приглушенный зеленый контур
+		box-shadow:
+			0 10px 30px rgba(0, 0, 0, 0.5),
+			0 0 15px rgba(76, 175, 80, 0.1) !important;
+
+		&::before {
+			content: '✓';
+			width: 22px;
+			height: 22px;
+			background-color: #2e7d32; // Насыщенный зеленый круг под галочку
+			color: #ffffff;
+			border-radius: 50%;
+			font-size: 11px;
+			font-weight: bold;
+		}
+
+		&:focus-visible {
+			border: 1px solid rgba(129, 199, 132, 0.4) !important; // Приглушенный зеленый контур
+			outline: none;
+		}
+	}
+
+	/* ТИП 3: КАРТОЧКА ИНФОРМАЦИИ ИЛИ ПОДСКАЗКИ (Сине-голубая рамка + инфо-знак) */
+	.woocommerce-info {
+		border: 1px solid rgba(100, 181, 246, 0.4) !important; // Приглушенный голубой контур
+		box-shadow:
+			0 10px 30px rgba(0, 0, 0, 0.5),
+			0 0 15px rgba(33, 150, 243, 0.1) !important;
+
+		&::before {
+			content: 'ℹ️';
+		}
+	}
+}
+
+/* Единая плавная пружинящая анимация вылета для всей системы уведомлений */
+@keyframes slideInUniversalNotification {
+	from {
+		opacity: 0;
+		transform: translateX(50px) scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0) scale(1);
+	}
+}

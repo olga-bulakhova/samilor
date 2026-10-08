@@ -159,3 +159,7 @@ input[type='checkbox'] {
 	height: 16px;
 	accent-color: variables.$color-links; // Красит чекбокс в ваш оранжевый #ff8562
 }
+
+.woocommerce-EditAccountForm.edit-account {
+	margin-inline: auto;
+}
