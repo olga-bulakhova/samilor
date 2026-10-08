@@ -1,100 +1,233 @@
-@use "../buttons";
-@use "../main";
-@use "../variables";
-@use "form";
+@use '../variables' as *;
+@use '../buttons';
 
-.woocommerce-info,
-.woocommerce-form-coupon-toggle {
-	margin-bottom: 10px;
-	a {
-		border-bottom: variables.$border-black;
-	}
-}
+/* Главный двухколоночный контейнер страницы оформления */
+.custom-checkout-layout {
+	display: flex;
+	gap: 40px;
+	margin: 20px 0;
+	align-items: flex-start;
+	color: $color-text;
 
-.checkout_coupon {
-	p:first-child {
-		margin-bottom: 10px;
-	}
-
-	.form-row-first,
-	.form-row-last {
-		display: inline-block;
-		vertical-align: middle;
+	@media (max-width: $lg) {
+		// Ваш брейкпоинт 992px
+		flex-direction: column;
+		gap: 30px;
 	}
 
-	.button {
-		@include buttons.button;
-		@include main.link-bold-hover-bolder;
-		margin-left: 15px;
+	h3 {
+		color: $color-title;
+		font-size: 20px;
+		font-weight: 600;
+		margin-top: 0;
+		margin-bottom: 24px;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+
+	/* ЛЕВАЯ КОЛОНКА (Данные) */
+	.checkout-billing-fields {
+		flex-grow: 1;
+		width: 50;
+
+		@media (max-width: $lg) {
+			width: 100%;
+		}
+	}
+
+	/* ПРАВАЯ КОЛОНКА (Чек заказа) */
+	.checkout-order-review-sidebar {
+		width: 50%;
+		position: sticky;
+		top: 40px; // Фиксируется при скролле
+
+		@media (max-width: $lg) {
+			width: 100%;
+			position: static;
+		}
+	}
+
+	/* Обертки для карточек блоков */
+	.checkout-block-card,
+	.checkout-sticky-card {
+		@media (min-width: $sm) {
+			background-color: rgba($color-light-text, 0.02);
+			border: $border-gray; // Ваша рамка 1px solid #433e3e
+			border-radius: $border-radius; // Ваш радиус 24px
+			padding: 30px;
+		}
+	}
+
+	.checkout-sticky-card {
+		background-color: rgba($color-light-text, 0.03); // Слегка контрастнее
+	}
+
+	/* СТИЛИЗАЦИЯ ФОРМ И ИНПУТОВ (Перевод в темный стиль) */
+	.form-row {
+		margin-bottom: 20px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+
+		label {
+			font-size: 14px;
+			color: rgba($color-light-text, 0.6);
+			font-weight: 500;
+
+			.required {
+				color: $color-danger; // Ваша переменная #f58080 для обязательных полей
+				text-decoration: none;
+			}
+		}
+
+		// Поля ввода текста, селекты и textarea
+		input.input-text,
+		textarea,
+		select {
+			width: 100%;
+		}
+
+		textarea {
+			height: 120px;
+			resize: vertical;
+		}
+	}
+
+	/* Переделка табличной части заказа справа */
+	table.shop_table {
+		width: 100%;
+		border-collapse: collapse;
+		margin-bottom: 24px;
+
+		thead,
+		th,
+		td {
+			border: none;
+		}
+
+		thead th {
+			display: none; // Скрываем верхнюю ненужную плашку таблицы
+		}
+
+		// Строка товара
+		.cart_item {
+			border-bottom: $border-gray;
+
+			td {
+				padding: 16px 0;
+
+				&.product-name {
+					color: $color-text;
+					font-size: 15px;
+					line-height: 1.4;
+
+					strong.product-quantity {
+						color: rgba($color-light-text, 0.4);
+						font-weight: 400;
+						margin-left: 4px;
+					}
+				}
+
+				&.product-total {
+					text-align: right;
+					color: $color-title;
+					font-weight: 600;
+
+					span,
+					bdi {
+						color: inherit !important;
+					}
+				}
+			}
+		}
+
+		// Итоговые строки (Подытог, Доставка, Итого)
+		.cart-subtotal,
+		.shipping,
+		.order-total {
+			border-bottom: $border-gray;
+
+			th {
+				padding: 14px 0;
+				color: rgba($color-light-text, 0.5);
+				font-weight: 400;
+				text-align: left;
+			}
+
+			td {
+				padding: 14px 0;
+				text-align: right;
+				color: $color-title;
+				font-weight: 600;
+
+				span,
+				bdi {
+					color: inherit !important;
+				}
+			}
+		}
+
+		// Финальная жирная строка ИТОГО
+		.order-total {
+			border-bottom: none;
+			font-size: 18px;
+
+			th {
+				color: $color-title;
+				font-weight: 700;
+			}
+			td {
+				color: $color-links; // Подсвечиваем финальную сумму вашим оранжевым
+				font-weight: 700;
+			}
+		}
+	}
+
+	/* БЛОК КНОПКИ ОПЛАТЫ И ПЛАТЕЖНЫХ СИСТЕМ */
+	#payment {
+		background: transparent;
+		padding: 0;
+
+		ul.payment_methods {
+			list-style: none;
+			padding: 0;
+			margin: 0 0 24px 0;
+			border-bottom: $border-gray;
+			padding-bottom: 16px;
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+
+			li {
+				color: $color-text;
+				font-size: 14px;
+
+				input[type='radio'] {
+					margin-right: 8px;
+					accent-color: $color-links; // Красит радио-кнопку в ваш оранжевый
+				}
+
+				.payment_box {
+					background-color: rgba($color-light-text, 0.04);
+					border-radius: 6px;
+					padding: 12px;
+					margin-top: 8px;
+					font-size: 13px;
+					color: rgba($color-light-text, 0.6);
+					line-height: 1.4;
+				}
+			}
+		}
+
+		// Главная кнопка "Подтвердить заказ"
+		button#place_order {
+			@include buttons.button;
+			@include buttons.button-primary;
+		}
 	}
 }
 
 .woocommerce-billing-fields,
-.woocommerce-additional-fields {
-	@include form.form-vertical;
-	max-width: 500px;
-
-	h3 {
-		display: none;
-	}
-}
-
-.expo-checkout-form {
-	margin-top: 40px;
-	width: 100%;
-
-	.checkout-wrapper {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		column-gap: 60px;
-
-		@media (max-width: variables.$md) {
-			grid-template-columns: 1fr;
-			row-gap: 40px;
-		}
-	}
-
-	.create-account {
-		margin-bottom: 15px;
-	}
-
-	// скрываем доставку по адресу
-	.woocommerce-shipping-fields {
-		display: none;
-	}
-
-	.woocommerce-error {
-		margin-top: 0;
-	}
-}
-
-.woocommerce-checkout-review-order {
-	.payment_methods {
-		display: none;
-	}
-
-	.button[type='submit'] {
-		@include buttons.button;
-		@include buttons.button-primary;
-		margin-top: 30px;
-	}
-}
-
-.checkout-navigation {
-	display: flex;
-	justify-content: flex-end;
-	column-gap: 20px;
-	margin-bottom: -20px;
-	@media (max-width: variables.$md) {
-		margin-bottom: 20px;
-		justify-content: flex-start;
-	}
-
-	a {
-		border-bottom: variables.$border-black;
-	}
-}
-
-.woocommerce-checkout-payment {
-	margin-top: 30px;
+#ship-to-different-address {
+	display: none !important;
 }
