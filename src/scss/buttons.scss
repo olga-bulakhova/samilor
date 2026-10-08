@@ -81,6 +81,12 @@
 	}
 }
 
+@mixin button-small {
+	min-width: 100px;
+	padding: 10px 24px;
+	border-radius: 16px;
+}
+
 .btn-expo-secondary {
 	@include button-secondary;
 }
