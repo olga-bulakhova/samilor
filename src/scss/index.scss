@@ -9,6 +9,7 @@
 @use 'header';
 @use 'footer';
 @use 'home__heading';
+@use 'woocommerce/order-status-badge';
 @use 'woocommerce/archive-product';
 @use 'woocommerce/base';
 @use 'woocommerce/product-card';
@@ -30,3 +31,4 @@
 @use 'woocommerce/password-input';
 @use 'woocommerce/my-account';
 @use 'woocommerce/orders';
+@use 'woocommerce/view-order';

@@ -1,0 +1,303 @@
+@use '../variables' as *;
+
+.custom-view-order {
+	color: $color-text;
+
+	// Шапка страницы просмотра заказа
+	.view-order-header {
+		h2 {
+			color: $color-title;
+			margin: 0 0 10px 0;
+
+			mark.order-number {
+				background: transparent;
+				color: $color-links; // Ваша оранжевая переменная #ff8562
+			}
+		}
+
+		.order-date-status {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			.order-date {
+				font-size: 14px;
+				color: rgba($color-light-text, 0.5);
+			}
+		}
+	}
+
+	h3 {
+		font-size: 18px;
+		color: $color-title;
+		margin-top: 0;
+		margin-bottom: 20px;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+
+	/* Стилизация таблицы содержимого заказа от WooCommerce */
+	.order-table-container {
+		background-color: rgba($color-light-text, 0.02);
+		border: $border-gray;
+		border-radius: $border-radius; // Ваш радиус 24px
+		overflow: hidden;
+
+		@media (max-width: $sm) {
+			background: none;
+			border: none;
+		}
+
+		table.shop_table {
+			width: 100%;
+			border-collapse: collapse;
+			text-align: left;
+
+			thead {
+				background-color: rgba($color-light-text, 0.03);
+				border-bottom: $border-gray;
+
+				th {
+					padding: 16px 24px;
+					color: $color-title;
+					font-weight: 600;
+					font-size: 14px;
+					text-transform: uppercase;
+
+					@media (max-width: $sm) {
+						padding-inline: 10px;
+					}
+				}
+			}
+
+			tbody tr.woocommerce-table__line-item {
+				border-bottom: $border-gray;
+
+				td {
+					padding: 10px 24px;
+					color: $color-text;
+
+					@media (max-width: $sm) {
+						padding-inline: 10px;
+					}
+
+					// Название товара
+					&.woocommerce-table__product-name {
+						a {
+							color: $color-light-text;
+							text-decoration: none;
+							font-weight: 600;
+							transition: color 0.2s ease;
+
+							&:hover {
+								color: $color-links;
+							}
+						}
+
+						// Количество товара (х2)
+						strong.product-quantity {
+							color: rgba($color-light-text, 0.4);
+							font-weight: 400;
+							margin-left: 6px;
+						}
+					}
+
+					// Сумма позиции
+					&.woocommerce-table__product-total {
+						color: $color-title;
+						font-weight: 600;
+					}
+				}
+			}
+
+			/* Нижняя часть таблицы (Итоги, Доставка, Оплата) */
+			tfoot {
+				tr {
+					border-bottom: $border-gray;
+					background-color: rgba($color-light-text, 0.01);
+
+					&:last-child {
+						border-bottom: none;
+						background-color: rgba($color-light-text, 0.03); // Выделяем строку "Итого"
+						font-size: 18px;
+						font-weight: 600;
+
+						th,
+						td {
+							color: $color-title !important;
+						}
+					}
+
+					th {
+						padding: 14px 24px;
+						color: rgba($color-light-text, 0.6);
+						font-weight: 400;
+						width: 70%;
+					}
+
+					td {
+						padding: 14px 24px;
+						color: $color-title;
+						text-align: right;
+
+						span,
+						bdi {
+							color: inherit !important;
+							font-weight: 600;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/* Блок адресов */
+	.order-addresses-wrapper {
+		margin-top: 40px;
+
+		.address-card {
+			background-color: rgba($color-light-text, 0.02);
+			border: $border-gray;
+			border-radius: $border-radius; // Ваш радиус 24px
+			padding: 24px;
+
+			address {
+				font-style: normal;
+				color: $color-text;
+				line-height: 1.6;
+				font-size: 15px;
+
+				p {
+					margin: 8px 0 0 0;
+
+					&.address-phone,
+					&.address-email {
+						color: rgba($color-light-text, 0.7);
+					}
+				}
+			}
+		}
+	}
+
+	/* Блок системных заметок менеджера */
+	.order-notes-block {
+		background-color: rgba($color-danger, 0.03);
+		border: 1px dashed rgba($color-danger, 0.3);
+		border-radius: $border-radius;
+		padding: 24px;
+
+		ol.notes {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			flex-direction: column;
+			gap: 14px;
+
+			li.note {
+				.comment-text {
+					p.meta {
+						font-size: 11px;
+						color: rgba($color-light-text, 0.4);
+						margin: 0 0 4px 0;
+						text-transform: uppercase;
+					}
+					.description p {
+						margin: 0;
+						color: $color-text;
+						font-size: 14px;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* Флекс-контейнер для картинки и информации о товаре в чеке */
+.product-view-order-flex {
+	display: flex;
+	align-items: center;
+	gap: 16px; // Расстояние между фотографией и текстом названия
+}
+
+/* Блок с миниатюрой товара */
+.product-view-order-thumb {
+	width: 60px; // Оптимальный компактный размер для чека заказа
+	height: 60px;
+	flex-shrink: 0; // Запрещаем картинке сжиматься
+	overflow: hidden;
+	border-radius: calc($border-radius / 3); // Небольшое скругление на основе вашего 24px
+	border: 1px solid rgba($color-light-text, 0.1); // Едва заметный контур
+	background-color: rgba($color-light-text, 0.02);
+
+	img {
+		width: 100% !important;
+		height: 100% !important;
+		object-fit: cover !important; // Картинка заполняет квадрат без искажения пропорций
+		display: block;
+		transition: transform 0.2s ease;
+	}
+
+	// Небольшой ховер-эффект при наведении на картинку товара
+	&:hover img {
+		transform: scale(1.05);
+	}
+}
+
+/* Блок с текстом названия и свойствами вариации */
+.product-view-order-info {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 4px;
+
+	.product-title-link {
+		font-size: 15px;
+		font-weight: 600;
+		color: $color-light-text !important;
+		text-decoration: none;
+		line-height: 1.3;
+
+		&:hover {
+			color: $color-links !important; // Ваша оранжевая переменная при наведении
+		}
+	}
+
+	strong.product-quantity {
+		font-size: 14px;
+		color: rgba($color-light-text, 0.4) !important;
+		font-weight: 400;
+	}
+
+	/* Стилизация вывода характеристик (например, Цвет: Бордовый) */
+	ul.wc-item-meta {
+		list-style: none;
+		padding: 0;
+		margin: 4px 0 0 0;
+		font-size: 12px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		color: rgba($color-light-text, 0.5);
+
+		li {
+			background-color: rgba($color-light-text, 0.04);
+			padding: 2px 8px;
+			border-radius: 4px;
+			border: 1px solid rgba($color-light-text, 0.05);
+
+			strong {
+				font-weight: 500;
+				color: rgba($color-light-text, 0.7);
+			}
+		}
+	}
+}
+
+.woocommerce-order-details,
+.woocommerce-customer-details {
+	padding-block: 20px;
+	@media (min-width: $sm) {
+		padding-inline: 20px;
+	}
+}

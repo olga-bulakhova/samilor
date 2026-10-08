@@ -1,0 +1,35 @@
+@use '../variables' as *;
+
+.order-status-badge {
+	font-size: 12px;
+	font-weight: 600;
+	padding: 6px 14px;
+	border-radius: 18px;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+
+	&.badge-completed {
+		background-color: rgba(46, 125, 50, 0.2);
+		color: #81c784;
+		border: 1px solid rgba(46, 125, 50, 0.4);
+	}
+
+	&.badge-processing {
+		background-color: rgba(21, 101, 192, 0.2);
+		color: #64b5f6;
+		border: 1px solid rgba(21, 101, 192, 0.4);
+	}
+
+	&.badge-pending {
+		background-color: rgba(239, 108, 0, 0.2);
+		color: #ffb74d;
+		border: 1px solid rgba(239, 108, 0, 0.4);
+	}
+
+	&.badge-cancelled,
+	&.badge-failed {
+		background-color: rgba($color-danger, 0.15);
+		color: $color-danger;
+		border: 1px solid rgba($color-danger, 0.3);
+	}
+}

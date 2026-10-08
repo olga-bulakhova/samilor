@@ -82,7 +82,8 @@
 	a {
 		border: none;
 	}
-	max-width: 700px;
+	border-radius: 10px;
+	overflow: hidden;
 	@include table;
 	@include table-vertical;
 }
