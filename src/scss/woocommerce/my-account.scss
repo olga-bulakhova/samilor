@@ -1,11 +1,6 @@
 @use '../variables' as *;
 
 .custom-my-account-layout {
-	display: flex;
-	gap: 40px;
-	margin: 40px 0;
-	color: $color-text;
-
 	@media (max-width: $sm) {
 		margin-block: 16px;
 	}
@@ -44,23 +39,10 @@
 	}
 
 	.my-account-content {
-		flex-grow: 1;
-		max-width: 1000px;
 		margin-inline: auto;
-		background-color: rgba($color-light-text, 0.02);
-		border: $border-card;
-		border-radius: $border-radius;
-		padding: 30px;
-
-		@media (max-width: $sm) {
-			background: none;
-			border: none;
-			padding: 0;
-		}
+		max-width: 1000px;
 
 		h2 {
-			color: $color-title;
-			margin-top: 0;
 			margin-bottom: 15px;
 		}
 	}

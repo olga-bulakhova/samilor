@@ -14,25 +14,16 @@ defined('ABSPATH') || exit;
 
 $customer_id = get_current_user_id();
 
-if (! wc_ship_to_billing_address_only() && wc_shipping_enabled()) {
-  $get_addresses = apply_filters(
-    'woocommerce_my_account_get_addresses',
-    array(
-      'billing'  => __('Billing address', 'woocommerce'),
-      'shipping' => __('Shipping address', 'woocommerce'),
-    ),
-    $customer_id
-  );
-} else {
-  $get_addresses = apply_filters(
-    'woocommerce_my_account_get_addresses',
-    array(
-      'billing' => __('Billing address', 'woocommerce'),
-    ),
-    $customer_id
-  );
-}
+// Принудительно оставляем только адрес доставки, полностью исключая billing (платежный адрес)
+$get_addresses = apply_filters(
+  'woocommerce_my_account_get_addresses',
+  array(
+    'shipping' => __('Shipping address', 'woocommerce'),
+  ),
+  $customer_id
+);
 
+// Переменные для сохранения обратной совместимости с дефолтными хуками
 $oldcol = 1;
 $col    = 1;
 ?>
@@ -45,8 +36,8 @@ $col    = 1;
     </p>
   </div>
 
-  <!-- Сетка карточек -->
-  <div class="addresses-cards-grid">
+  <!-- Контейнер карточки -->
+  <div class="addresses-cards-grid standard-single-card">
     <?php foreach ($get_addresses as $name => $address_title) : ?>
       <?php
       $address = wc_get_account_formatted_address($name);

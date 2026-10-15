@@ -1,5 +1,7 @@
-<?php get_header() ?>
-<?php $expo_theme_options = expo_theme_options();
+<?php
+get_header();
+$expo_theme_options = expo_theme_options();
+$expo_theme_info = expo_theme_info();
 global $product;
 ?>
 
@@ -13,11 +15,11 @@ global $product;
                 </div>
                 <div class="heading-info">
                     <h1>
-                        ГОЛОВНЫЕ УБОРЫ, ШАРФЫ, ПЕРЧАТКИ
+                        <?php echo $expo_theme_options['title'] ?>
                     </h1>
 
                     <div class="heading-subtitle expo-subtitle">
-                        МИНСК | ТЦ ЭКСПОБЕЛ | 2 этаж, павильон 22-23
+                        <?php echo $expo_theme_info['address'] ?>
                     </div>
 
                     <a class="btn btn-expo-secondary" href="/shop/">ПЕРЕЙТИ В КАТАЛОГ</a>
@@ -79,7 +81,7 @@ global $product;
             <h2>Наши контакты</h2>
 
             <div class="expo-subtitle mt-3 mb-5">
-                МИНСК | ТЦ ЭКСПОБЕЛ, 2 этаж, ряд 8-9, пав. 22-23
+                <?php echo $expo_theme_info['address'] ?>
             </div>
         </div>
 

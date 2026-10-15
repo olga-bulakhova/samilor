@@ -91,30 +91,6 @@
 			//	height: 52px;
 			padding: 15px 0;
 		}
-
-		// .sub-menu {
-		// 	visibility: hidden;
-		// 	display: flex;
-		// 	position: fixed;
-		// 	top: 50px;
-		// 	left: 0;
-		// 	right: 0;
-		// 	background-color: variables.$background-page;
-		// 	justify-content: center;
-		// 	flex-wrap: wrap;
-		// 	padding: 30px 10%;
-		// 	column-gap: 30px;
-		// 	row-gap: 10px;
-		// 	border-top: variables.$border-gray;
-		// 	box-shadow: 0 13px 23px rgba(0, 0, 0, 0.11);
-
-		// 	a {
-		// 		&:hover {
-		// 			color: variables.$color-title;
-		// 			border-bottom: 1px solid variables.$color-title;
-		// 		}
-		// 	}
-		// }
 	}
 
 	.header-actions {
@@ -169,7 +145,21 @@
 
 .sub-menu {
 	visibility: hidden;
-	opacity: 0; // Начинаем с полной прозрачности для плавной анимации
+
+	// display: flex;
+	// position: fixed;
+	// top: 50px;
+	// left: 0;
+	// right: 0;
+	// background-color: variables.$background-page;
+	// justify-content: center;
+	// flex-wrap: wrap;
+	// padding: 30px 10%;
+	// column-gap: 30px;
+	// row-gap: 10px;
+	// border-top: variables.$border-gray;
+	// box-shadow: 0 13px 23px rgba(0, 0, 0, 0.11);
+
 	display: flex;
 	position: fixed;
 	top: 60px; // Слегка увеличили отступ сверху, чтобы дать меню "дышать" (подстройте под высоту шапки)
@@ -194,14 +184,13 @@
 		0 20px 40px rgba(0, 0, 0, 0.5),
 		0 1px 0 rgba(255, 255, 255, 0.05) inset;
 
-	// Плавный переход для всех состояний (включая появление при ховере на родительский li)
-	transition:
-		opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-		visibility 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-		transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-	transform: translateY(-10px); // Небольшой сдвиг вверх в закрытом состоянии
+	// a {
+	// 	&:hover {
+	// 		color: variables.$color-title;
+	// 		border-bottom: 1px solid variables.$color-title;
+	// 	}
+	// }
 
-	/* Элемент ссылки */
 	a {
 		color: variables.$color-text; // Используем ваш основной цвет текста (80% белый)
 		font-size: 15px;
@@ -211,7 +200,6 @@
 		padding: 4px 0;
 		transition: color 0.2s ease;
 
-		// Создаем скрытую умную полосу подчеркивания
 		&::after {
 			content: '';
 			position: absolute;
@@ -234,13 +222,4 @@
 			}
 		}
 	}
-}
-
-/* 💡 ДЛЯ РАБОТЫ АНИМАЦИИ: 
-   В месте, где вы через ховер родительского элемента показываете подменю, 
-   добавьте переключение opacity и сброс transform: */
-li:hover .sub-menu {
-	visibility: visible;
-	opacity: 1;
-	transform: translateY(0); // Меню плавно опускается на свое место при открытии
 }

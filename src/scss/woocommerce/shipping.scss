@@ -1,0 +1,130 @@
+@use '../variables' as *;
+@use '../buttons';
+
+/* ==========================================================================
+   СТИЛИЗАЦИЯ СТРАНИЦЫ РЕДАКТИРОВАНИЯ АДРЕСА ДОСТАВКИ (EDIT SHIPPING ADDRESS)
+   ========================================================================== */
+
+// Главный контейнер формы редактирования
+form[method='post'] {
+	// Находим форму именно внутри контента редактирования адреса
+	&:has(.woocommerce-address-fields) {
+		background-color: rgba($color-light-text, 0.02) !important; // Полупрозрачный фон
+		border: $border-gray !important; // Ваша серая рамка 1px solid #433e3e
+		border-radius: $border-radius !important; // Ваш радиус 24px
+		padding: 35px !important;
+		max-width: 700px; // Делаем форму аккуратной и не слишком широкой
+		margin: 20px auto;
+		color: $color-text;
+
+		@media (max-width: $sm) {
+			// Убираем рамки на мобильных для экономии места
+			padding: 0 !important;
+			background: transparent !important;
+			border: none !important;
+		}
+
+		.woocommerce-address-fields__field-wrapper {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0; // Контролируем отступы через внутренние p.form-row
+			width: 100%;
+		}
+
+		/* Общие стили для строк полей (инпутов) */
+		.form-row {
+			margin-bottom: 20px;
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+			float: none !important; // Сбрасываем старые флоаты WooCommerce
+
+			label {
+				font-size: 14px;
+				color: rgba($color-light-text, 0.6);
+				font-weight: 500;
+
+				.required {
+					color: $color-danger; // Ваша красная переменная #f58080
+					text-decoration: none;
+				}
+			}
+
+			// Текстовые поля, селекты стран и выпадающие списки
+			input.input-text,
+			select,
+			textarea {
+				width: 100% !important;
+			}
+
+			textarea {
+				height: 100px;
+				resize: vertical;
+			}
+
+			/* Оптимизация ширины полей (Двухколоночные и одноколоночные элементы) */
+			&.form-row-first,
+			&.form-row-last {
+				width: calc(50% - 10px) !important; // Делаем поля Имя и Фамилия ровно 50/50
+				display: inline-flex;
+
+				@media (max-width: $sm) {
+					width: 100% !important; // На мобилках выстраиваем в одну полосу
+				}
+			}
+
+			&.form-row-first {
+				margin-right: 20px;
+
+				@media (max-width: $sm) {
+					margin-right: 0;
+				}
+			}
+
+			&.form-row-wide {
+				width: 100% !important; // Поля адреса, города и индекса растягиваем на 100%
+			}
+		}
+
+		/* Стилизация кнопки отправки ("Сохранить адрес") */
+		button.button {
+			@include buttons.button;
+			@include buttons.button-primary; // Ваша прокачанная белая кнопка с градиентом
+			margin-top: 15px;
+			height: 48px;
+			padding: 0 35px;
+			font-size: 13px;
+			letter-spacing: 0.08rem;
+
+			@media (max-width: $sm) {
+				width: 100%; // Кнопка на всю ширину экрана на смартфонах
+			}
+		}
+	}
+}
+
+/* Специфический фикс для стилизации селектов плагина WooCommerce Select2 (выбор городов/стран) */
+.select2-container--default {
+	.select2-selection--single {
+		background-color: rgba(255, 255, 255, 0.04) !important;
+		border: 1px solid rgba(255, 255, 255, 0.15) !important;
+		border-radius: 8px !important;
+		height: 46px !important;
+		display: flex;
+		align-items: center;
+
+		.select2-selection__rendered {
+			color: #ffffff !important;
+			padding-left: 16px !important;
+		}
+
+		.select2-selection__arrow {
+			height: 44px !important;
+			right: 10px !important;
+
+			b {
+				border-color: #ffffff transparent transparent transparent !important; // Перекрашиваем стрелочку селекта в белый
+			}
+		}
+	}
+}

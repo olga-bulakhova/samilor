@@ -30,12 +30,12 @@
 	background-color: variables.$background-color-primary-button;
 	border-width: 1px;
 	border-color: transparent;
-	border-radius: 24px;
+	border-radius: 26px;
 	border-style: solid;
 	cursor: pointer;
 	opacity: 1;
 	&:hover {
-		opacity: 0.8;
+		scale: 1.02;
 	}
 	&:disabled {
 		color: #000;
