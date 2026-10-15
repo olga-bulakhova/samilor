@@ -4,11 +4,11 @@ jQuery(document).ready(function ($) {
 
 		setTimeout(function () {
 			$btn.addClass('text-transparent')
-		}, 800)
+		}, 500)
 
 		setTimeout(function () {
 			$btn.removeClass('text-transparent')
 			$btn.text('В корзине ✓')
-		}, 3000)
+		}, 2000)
 	})
 })
