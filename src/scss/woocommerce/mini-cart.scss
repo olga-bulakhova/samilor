@@ -25,6 +25,10 @@
 		right: 15px;
 
 		cursor: pointer;
+
+		svg {
+			color: variables.$color-text;
+		}
 	}
 
 	table.woocommerce-mini-cart {

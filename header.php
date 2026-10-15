@@ -107,7 +107,7 @@
                         </li>
 
                         <?php
-                        if (! is_cart() && ! is_checkout() && function_exists('WC') && WC()->cart) :
+                        if (!is_cart() && !is_checkout() && function_exists('WC') && WC()->cart) :
                             $expo_cart_count = WC()->cart->get_cart_contents_count();
                         ?>
                             <li>

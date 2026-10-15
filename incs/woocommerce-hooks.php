@@ -19,10 +19,22 @@ add_action('woocommerce_before_shop_loop_item', 'woocommerce_show_product_loop_s
 remove_action('woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10);
 remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5);
 
+
+/**
+ * Фрагмент счётчика корзины (AJAX).
+ * Считаем количество ТОВАРОВ (штук), а не строк. Разметка должна совпадать с header.php.
+ */
 add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
+    if (! function_exists('WC') || ! WC()->cart) {
+        return $fragments;
+    }
 
-    $fragments['span.cart-badge'] = '<span class="cart-badge count-' . count(WC()->cart->get_cart()) . '">' . count(WC()->cart->get_cart()) . '</span>';
+    $count = WC()->cart->get_cart_contents_count();
 
+    $fragments['span.cart-badge'] = sprintf(
+        '<span class="cart-badge count-%1$d">%1$d</span>',
+        (int) $count
+    );
 
     return $fragments;
 });
@@ -44,49 +56,53 @@ add_action('woocommerce_before_shop_loop', function () {
 remove_action('woocommerce_archive_description', 'woocommerce_taxonomy_archive_description', 10);
 remove_action('woocommerce_archive_description', 'woocommerce_product_archive_description', 10);
 
-//переподключаем мету с артикулом после заговка
+// переподключаем мету с артикулом после заголовка
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
 add_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 7);
 
-//отключаем табы с отзывами и описанием
+// отключаем табы с отзывами и описанием
 remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10);
 
-//убираем аватарки из отзывов
+// убираем аватарки из отзывов
 remove_action('woocommerce_review_before', 'woocommerce_review_display_gravatar', 10);
 
 
-//убираем ссылки с картинок на странице продукта
+// убираем ссылки с картинок на странице продукта
 add_filter('woocommerce_single_product_image_thumbnail_html', 'custom_remove_product_link');
 function custom_remove_product_link($html)
 {
     return strip_tags($html, '<div><img>');
 }
 
+
+// единое сообщение об ошибке валидации чекаута
 function quadlayers($fields, $errors)
 {
-    // in case any validation errors
-    if (!empty($errors->get_error_codes())) {
-
-        // omit all existing error messages
+    if (! empty($errors->get_error_codes())) {
         foreach ($errors->get_error_codes() as $code) {
             $errors->remove($code);
         }
-        // display custom single error message
         $errors->add('validation', 'Пожалуйста, заполните все обязательные поля!');
     }
 }
 add_action('woocommerce_after_checkout_validation', 'quadlayers', 9999, 2);
 
+
+/**
+ * Подмена текста ошибки про email.
+ * Ищем по подстроке, а не по полному совпадению — устойчиво к смене перевода WooCommerce.
+ */
 function my_woocommerce_add_error($error)
 {
-    if ('Неверный адрес эл. почты для выставления счета' == $error) {
+    if (false !== mb_stripos($error, 'эл. почт')) {
         $error = 'Пожалуйста, введите корректный email!';
     }
     return $error;
 }
 add_filter('woocommerce_add_error', 'my_woocommerce_add_error');
 
-// опускаем вниз рекомендаванные товары на странице корзины
+
+// опускаем вниз рекомендованные товары на странице корзины
 remove_action('woocommerce_cart_collaterals', 'woocommerce_cart_totals', 10);
 add_action('woocommerce_cart_collaterals', 'woocommerce_cart_totals', 5);
 
@@ -94,115 +110,105 @@ add_action('woocommerce_cart_collaterals', 'woocommerce_cart_totals', 5);
 // меняем количество отображаемых заказов в личном кабинете
 function kbnt_my_account_orders($args)
 {
-    $args['posts_per_page'] = 30; // add number or -1 (display all orderes per page)
+    $args['posts_per_page'] = 30; // число или -1 (показать все заказы)
     return $args;
 }
 add_filter('woocommerce_my_account_my_orders_query', 'kbnt_my_account_orders', 10, 1);
 
 
-//Отключение формы ввода купона, если он уже применён
+// Отключение формы ввода купона, если он уже применён
 add_filter('woocommerce_coupons_enabled', 'true_if_coupon_applied_checkout', 25);
-
 function true_if_coupon_applied_checkout($coupons_enabled)
 {
-
-    // можете удалить это условие, тогда форма ввода купона пропадёт и в корзине
+    // убрать это условие — и форма купона пропадёт также в корзине
     if (! is_checkout()) {
         return $coupons_enabled;
     }
 
-    if (! empty(WC()->cart->applied_coupons)) {
+    if (WC()->cart && ! empty(WC()->cart->applied_coupons)) {
         return false;
     }
 
     return $coupons_enabled;
 }
 
-//Исчезающие сообщения об ошибках на странице «Оформление заказа»
-add_action('wp_enqueue_scripts', 'true_checkout_error_fade_out', 25);
 
+// Исчезающие сообщения об ошибках на странице «Оформление заказа»
+add_action('wp_enqueue_scripts', 'true_checkout_error_fade_out', 25);
 function true_checkout_error_fade_out()
 {
-
-    // если находимся не на странице оформления заказа, то ничего не делаем
     if (! is_checkout()) {
         return;
     }
     wc_enqueue_js("
-		$( document.body ).on( 'checkout_error', function(){
-			setTimeout( function(){
-				$('.woocommerce-error').fadeOut( 300 );
-			}, 3000);
-		})
-	");
+        $( document.body ).on( 'checkout_error', function(){
+            setTimeout( function(){
+                $('.woocommerce-error').fadeOut( 300 );
+            }, 3000);
+        })
+    ");
 }
 
-//Отключение оплаты на сайте
+
+// Отключение оплаты на сайте
 add_filter('woocommerce_cart_needs_payment', '__return_false');
 
-add_action('woocommerce_after_cart_item_name', 'truemisha_artikul_in_cart', 25);
 
-//отобразить артикул товара в корзине
+// отобразить артикул товара в корзине
+add_action('woocommerce_after_cart_item_name', 'truemisha_artikul_in_cart', 25);
 function truemisha_artikul_in_cart($cart_item)
 {
-
     $sku = $cart_item['data']->get_sku();
 
-    if ($sku) { // если заполнен, то выводим
-        echo '<p class="mb-1"><small>Артикул: ' . $sku . '</small></p>';
+    if ($sku) { // если заполнен, то выводим (с экранированием)
+        echo '<p class="mb-1"><small>Артикул: ' . esc_html($sku) . '</small></p>';
     }
 }
 
 
-//меняем текст на кнопке при добавлении в корзину
-
+// меняем текст на кнопке при добавлении в корзину (страница товара)
 add_filter('woocommerce_product_single_add_to_cart_text', 'expo_single_product_btn_text');
-
 function expo_single_product_btn_text($text)
 {
-
-    if (WC()->cart->find_product_in_cart(WC()->cart->generate_cart_id(get_the_ID()))) {
+    if (WC()->cart && WC()->cart->find_product_in_cart(WC()->cart->generate_cart_id(get_the_ID()))) {
         $text = 'В корзине &#10003;';
     }
 
     return $text;
 }
 
-// для страниц каталога товаров, категорий товаров и т д
+// для каталога, категорий и т.д.
 add_filter('woocommerce_product_add_to_cart_text', 'expo_product_btn_text', 20, 2);
-
 function expo_product_btn_text($text, $product)
 {
-
     if (
         $product->is_type('simple')
         && $product->is_purchasable()
         && $product->is_in_stock()
+        && WC()->cart
         && WC()->cart->find_product_in_cart(WC()->cart->generate_cart_id($product->get_id()))
     ) {
-
         $text = 'В корзине &#10003;';
     }
 
     return $text;
 }
 
-//Отключение уведомления Вы отложили Товар в свою корзину
+
+// Отключение уведомления «Вы отложили товар в свою корзину»
 add_filter('wc_add_to_cart_message_html', '__return_null');
 
 
-
-// 1. Регистрируем новую кастомную валюту в списке WooCommerce
+// 1. Регистрируем кастомную валюту (символ BYN).
+//    ВНИМАНИЕ: валюта магазина должна быть установлена в XGH в настройках WooCommerce.
 add_filter('woocommerce_currencies', 'add_custom_gh_currency');
 function add_custom_gh_currency($currencies)
 {
-    // 'XGH' — уникальный трехбуквенный код вашей валюты (можете изменить)
-    // 'Моя кастомная валюта (BYN)' — название, которое появится в админке
     $currencies['XGH'] = __('Моя кастомная валюта (BYN)', 'woocommerce');
     return $currencies;
 }
 
-// 2. Привязываем к зарегистрированной валюте символ Ҕ
+// 2. Символ для валюты XGH
 add_filter('woocommerce_currency_symbol', 'add_custom_gh_currency_symbol', 10, 2);
 function add_custom_gh_currency_symbol($currency_symbol, $currency)
 {
@@ -214,14 +220,21 @@ function add_custom_gh_currency_symbol($currency_symbol, $currency)
     return $currency_symbol;
 }
 
-add_filter('wc_add_to_cart_message_html', 'handler_remove_cart_updated_notice', 10, 2);
-add_filter('woocommerce_add_message', 'handler_remove_cart_updated_notice');
 
+/**
+ * Гасим системное сообщение «Корзина обновлена».
+ * ВАЖНО: фильтр woocommerce_add_message отдаёт МАССИВ (['notice' => ..., 'data' => ...]),
+ * а не строку — поэтому проверяем аккуратно. Отдельный обработчик для
+ * wc_add_to_cart_message_html не нужен: он уже полностью отключён выше через __return_null.
+ */
+add_filter('woocommerce_add_message', 'handler_remove_cart_updated_notice', 10, 1);
 function handler_remove_cart_updated_notice($message)
 {
-    // Проверяем, содержит ли сообщение системный текст об обновлении корзины
-    if (strpos($message, 'Корзина обновлена') !== false || strpos($message, 'Cart updated') !== false) {
-        return false; // Полностью отменяем вывод этого сообщения
+    $text = is_array($message) ? ($message['notice'] ?? '') : (string) $message;
+
+    if (false !== strpos($text, 'Корзина обновлена') || false !== strpos($text, 'Cart updated')) {
+        return false; // отменяем вывод этого сообщения
     }
+
     return $message;
 }
