@@ -245,3 +245,49 @@ function handler_remove_cart_updated_notice($message)
 
     return $message;
 }
+
+/**
+ * Добавляет процент скидки рядом с ценой для товаров на распродаже.
+ */
+add_filter('woocommerce_get_price_html', 'expo_add_sale_percentage', 10, 2);
+function expo_add_sale_percentage($price_html, $product)
+{
+    if (! $product->is_on_sale()) {
+        return $price_html;
+    }
+
+    $percentage = 0;
+
+    if ($product->is_type('variable')) {
+        // У вариативного товара скидка может отличаться по вариациям — берём максимальную.
+        $prices      = $product->get_variation_prices();
+        $percentages = array();
+
+        foreach ($prices['price'] as $key => $active_price) {
+            $regular_price = (float) $prices['regular_price'][$key];
+            $active_price  = (float) $active_price;
+
+            if ($regular_price > 0 && $active_price < $regular_price) {
+                $percentages[] = round(100 - ($active_price / $regular_price * 100));
+            }
+        }
+
+        if ($percentages) {
+            $percentage = max($percentages);
+        }
+    } else {
+        $regular_price = (float) $product->get_regular_price();
+        $sale_price    = (float) $product->get_sale_price();
+
+        if ($regular_price > 0 && $sale_price > 0 && $sale_price < $regular_price) {
+            $percentage = round(100 - ($sale_price / $regular_price * 100));
+        }
+    }
+
+    if ($percentage > 0) {
+        $label = $product->is_type('variable') ? '-до ' . $percentage . '%' : '-' . $percentage . '%';
+        $price_html .= ' <span class="sale-percentage">' . esc_html($label) . '</span>';
+    }
+
+    return $price_html;
+}
