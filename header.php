@@ -107,7 +107,7 @@
                         </li>
 
                         <?php
-                        if (!is_cart() && !is_checkout() && function_exists('WC') && WC()->cart) :
+                        if (function_exists('WC') && WC()->cart) :
                             $expo_cart_count = WC()->cart->get_cart_contents_count();
                         ?>
                             <li>
@@ -143,7 +143,9 @@
                     </svg>
                 </div>
                 <div>
-                    <?php woocommerce_mini_cart(); ?>
+                    <div class="expo-mini-cart-content">
+                        <?php woocommerce_mini_cart(); ?>
+                    </div>
                 </div>
             </div>
         </div>

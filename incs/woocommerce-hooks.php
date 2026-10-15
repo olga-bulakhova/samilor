@@ -29,12 +29,19 @@ add_filter('woocommerce_add_to_cart_fragments', function ($fragments) {
         return $fragments;
     }
 
+    // Бейдж в шапке
     $count = WC()->cart->get_cart_contents_count();
-
     $fragments['span.cart-badge'] = sprintf(
         '<span class="cart-badge count-%1$d">%1$d</span>',
         (int) $count
     );
+
+    // Содержимое мини-корзины
+    ob_start();
+    woocommerce_mini_cart();
+    $mini_cart = ob_get_clean();
+
+    $fragments['div.expo-mini-cart-content'] = '<div class="expo-mini-cart-content">' . $mini_cart . '</div>';
 
     return $fragments;
 });
