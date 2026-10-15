@@ -23,17 +23,13 @@ defined('ABSPATH') || exit;
 do_action('woocommerce_before_mini_cart'); ?>
 
 <div class="widget_shopping_cart_content">
-
     <?php if (! WC()->cart->is_empty()) : ?>
-
         <div class="text-end mt-1 mb-3 woocommerce-mini-cart__buttons buttons d-flex justify-content-between">
             <a href="<?php echo wc_get_cart_url(); ?>"
                 class="btn-expo-primary">Перейти в корзину</a>
             <a href="<?php echo wc_get_checkout_url(); ?>"
                 class="btn-expo-primary">Оформить заказ</a>
         </div>
-
-
         <div class="table-responsive">
             <table class="table offcanvasCart-table woocommerce-mini-cart cart_list product_list_widget <?php echo esc_attr($args['list_class']); ?>">
                 <tbody>
@@ -77,15 +73,11 @@ do_action('woocommerce_before_mini_cart'); ?>
                                 </td>
                                 <td class="product-price-td"><?php echo $product_price; ?></td>
                                 <td class="product-quantity-td"><?php echo $cart_item['quantity']; ?></td>
-
                             </tr>
-
                     <?php }
                     }
 
-                    do_action('woocommerce_mini_cart_contents');
-
-                    ?>
+                    do_action('woocommerce_mini_cart_contents'); ?>
 
                 </tbody>
             </table>
@@ -103,24 +95,12 @@ do_action('woocommerce_before_mini_cart'); ?>
         </p>
 
         <?php do_action('woocommerce_widget_shopping_cart_before_buttons'); ?>
-
-        <!--        <div class="text-end mt-3 woocommerce-mini-cart__buttons buttons d-flex justify-content-between">-->
-        <!--            <a href="--><?php //echo wc_get_cart_url(); 
-                                    ?><!--"-->
-        <!--               class="btn-expo-primary">Перейти в корзину</a>-->
-        <!--            <a href="--><?php //echo wc_get_checkout_url(); 
-                                    ?><!--"-->
-        <!--               class="btn-expo-primary">Оформить заказ</a>-->
-        <!--        </div>-->
-
         <?php do_action('woocommerce_widget_shopping_cart_after_buttons'); ?>
 
     <?php else : ?>
-
         <p class="woocommerce-mini-cart__empty-message"><?php esc_html_e('No products in the cart.', 'woocommerce'); ?></p>
 
     <?php endif; ?>
 
     <?php do_action('woocommerce_after_mini_cart'); ?>
-
 </div>
