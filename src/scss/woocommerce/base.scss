@@ -1,29 +1,34 @@
-@use '../variables';
+@use "../variables";
 
 /* Перекрашиваем текстовые элементы WooCommerce */
 .woocommerce {
-	color: variables.$color-text;
+  color: variables.$color-text;
 
-	// Названия товаров в каталоге и на странице товара
-	ul.products li.product .woocommerce-loop-product__title,
-	div.product .product_title {
-		color: #ffffff;
-	}
+  // Названия товаров в каталоге и на странице товара
+  ul.products li.product .woocommerce-loop-product__title,
+  div.product .product_title {
+    color: #ffffff;
+  }
 
-	Цены в каталоге и внутри карточки ul.products li.product .price,
-	div.product .price {
-		color: variables.$color-title;
-		font-weight: 600;
-	}
+  //Цены в каталоге и внутри карточки ul.products li.product .price,
+  div.product .price {
+    color: variables.$color-links;
+    font-weight: 600;
 
-	// Ссылки, хлебные крошки и мелкий текст
-	// .woocommerce-breadcrumb,
-	// a {
-	// 	color: #ffffff;
-	// }
+    del {
+      color: variables.$color-text;
+      font-weight: 400;
+    }
+  }
 
-	// Заголовки табов (Описание, Отзывы)
-	div.product .woocommerce-tabs ul.tabs li a {
-		color: #ffffff;
-	}
+  // Ссылки, хлебные крошки и мелкий текст
+  // .woocommerce-breadcrumb,
+  // a {
+  // 	color: #ffffff;
+  // }
+
+  // Заголовки табов (Описание, Отзывы)
+  div.product .woocommerce-tabs ul.tabs li a {
+    color: #ffffff;
+  }
 }
